@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>test6.html - 폼 태그</h1>
+	
+	<!-- 
+	<form> 태그 = 양식 태그
+	- 사용자와 웹어플리케이션(사이트)간의 상호 작용이 가능하도록 해주는 태그(기술)
+	- 사용자로부터 입력하는 데이터 형식을 제공하는 태그들을 묶어주는 태그이며
+	  입력된 데이터를 다른 페이지로 전송하는 역할을 수행하는 태그
+	  => 전송되는 데이터는 서버측(JSP 등 = 백엔드)에서 처리할 수 있음
+	- <form></form> 형식으로 사용하며 시작태그와 끝태그 사이에 또 다른 form 태그가 올 수 없음 
+	
+	< form 태그 내부에서 사용 가능한 입력 양식 태그 >
+	1. <input type="text"> : 사용자로부터 텍스트 한 줄 입력받는 속성
+	2. <input type="number"> : 사용자로부터 숫자를 입력받는 속성
+	3. <input type="password"> : 사용자로부터 텍스트 한 줄 입력받는 속성(입력 데이터 숨김 처리)
+	4. <input type="checkbox"> : 사용자로부터 복수개의 항목을 체크하도록 하는 속성(체크박스)
+	5. <input type="radio"> : 사용자로부터 단일 항목을 선택하도록 하는 속성(라디오버튼)
+	   => 주의! name 속성값이 같은 항목끼리만 그룹화를 통해 단일 항목 선택이 가능하도록 변경됨
+	6. <input type="date"> : 사용자로부터 날짜를 선택하도록 하는 속성(캘린더 선택 또는 입력 가능)
+	7. <input type="button"> : 클릭 동작을 받도록 하는 속성(별도의 기능 연결 필요 - 자바스크립트)
+	8. <input type="submit"> : 버튼과 생김새 동일하나 <form> 태그 내의 입력 항목들을
+	                           action 속성에 지정된 위치로 전송 및 이동하는 역할
+	9. <input type="reset"> : 버튼과 생김새 동일하나 <form> 태그 내의 입력 항목들에 
+	                          입력된 데이터를 초기화하는 역할
+	---------------------------------------------------------------------------------------------
+	10. <select></select> & <option></option>
+	    : 사용자로부터 option 태그에 지정된 항목을 선택하도록 하는 태그(셀렉트박스 또는 콤보박스)
+	11. <textarea></textarea> : 여러 줄을 입력받을 수 있는 태그
+	-->
+	<!-- 입력 양식을 하나로 묶어줄 form 태그 작성 -->
+	<!-- submit 버튼 클릭 시 action 속성에 지정된 URL 또는 파일로 이동하면서 입력 데이터 모두 전송 처리 -->
+	<form action="test6_result.html">
+		<!-- <fieldset> 태그를 사용하여 입력 항목을 시각적으로 그룹화 가능 -->
+		<!-- <fieldset> 태그 내에 <legend> 태그를 사용하여 그룹화 된 항목의 제목 표시 가능 -->
+		<fieldset>
+			<legend>텍스트 입력 항목 연습</legend>
+			<!-- <input> 태그를 사용하여 기본 입력 항목 생성 -->
+			<!-- type 속성을 통해 다양한 형식의 입력 요소 지정 가능 -->
+			<input type="text"><br> <!-- 일반적인 텍스트 입력 항목 표시됨 -->
+			<!-- 텍스트박스에 placeholder 속성을 통해 입력창 배경에 텍스트 표시 가능 -->
+			<input type="text" placeholder="이름을 입력하세요"><br>
+			<!-- name 속성 지정 시 데이터 전송 시 사용할 이름 지정 가능 -->
+			<!-- value 속성 지정 시 입력 값을 미리 설정(표시) 가능 -->
+			<input type="text" name="id" value="admin"><br>
+			<!-- readonly 속성 지정 시 입력창 잠금(= 데이터 편집 불가 = 읽기 전용) -->
+			<!-- readonly 또는 readonly="readonly" 모두 사용 가능 -->
+			<input type="text" name="name" value="홍길동" readonly="readonly"><br>
+			<!-- disabled 속성 지정 시 입력창 비활성화(readonly 와 유사하나 역할 다름) -->
+			<input type="text" name="name2" value="홍길동" disabled="disabled"><br>
+			
+			<!-- type 속성에 "number" 지정 시 숫자 입력만 가능한 입력창 생성 -->
+			<input type="number"><br>
+			
+			<!-- type 속성에 "password" 지정 시 입력 항목 숨김 처리 가능한 입력창 생성(암호화 기능X) -->
+			<input type="password" name="passwd" placeholder="패스워드 입력"><br>
+			
+			<!-- <textarea> 태그 사용 시 여러 줄 입력 가능한 입력창 생성 -->
+			<!-- rows, cols 속성 설정 시 영문자, 숫자, 특수문자 기준 행, 열 크기 지정 가능 -->
+<!-- 			<textarea rows="5" cols="30"></textarea> 5행 30열 크기 -->
+			<!-- 텍스트박스와 달리 텍스트에어리어는 시작태그와 끝태그 사이에 값 입력 -->
+			<textarea rows="5" cols="30">안녕하세요</textarea> <!-- 5행 30열 크기 -->
+		</fieldset>
+		<fieldset>
+			<legend>선택 항목 연습</legend>
+			<!-- input 태그의 type 속성을 "radio" 지정 시 단일 항목 선택 가능한 라디오버튼 생성 -->
+			<!-- 표시할 텍스트는 태그 앞 또는 뒤에 직접 입력 -->
+			성별 : 
+			<input type="radio">남
+			<input type="radio">여<br>
+			<!-- 주의! 단일 선택 기능 사용하려면 그룹화 필수! -->
+			<!-- 그룹화는 name 속성값을 같게 지정한 항목만 가능함 -->
+			<!-- 단, 그룹화는 물리적으로 붙어있지 않아도 가능함 -->
+			성별 : 
+			<input type="radio" name="gender">남
+			<!-- 라디오버튼 또는 체크박스에 checked 속성 설정 시 기본값으로 선택되어 있음 -->
+			<input type="radio" name="gender" checked>여<br>
+			<!-- 
+			라디오버튼이나 체크박스 등의 항목 선택 시
+			정확한 선택 대신 텍스트만 클릭해도 해당 항목 선택이 가능하게 하려면
+			<label> 태그 사용하여 텍스트를 감싼 후
+			laben 태그 내의 for 속성으로 이름을 지정한 뒤
+			대상 태그(라디오버튼 등)의 id 속성에 동일한 이름을 지정
+			-->
+			성별 : 
+			<input type="radio" name="gender2" id="gender_male"><label for="gender_male">남</label>
+			<input type="radio" name="gender2" id="gender_female"><label for="gender_female">여</label><br>
+			
+			<!-- type 속성 "checkbox" 지정 시 복수개 항목 체크 가능한 체크박스 생성 -->
+			<!-- checked 속성 설정 시 기본값으로 해당 항목 체크(복수개 기본값 설정도 가능) -->
+			<!-- name 속성이 동일하더라도 그룹화 X -->
+			취미 : 
+			<input type="checkbox" name="hobby" id="hobby1"><label for="hobby1">등산</label>
+			<input type="checkbox" name="hobby" checked="checked">프로그래밍
+			<input type="checkbox" name="hobby">게임
+			<br>
+			<!-- <select> 태그 사용하여 선택 가능 목록 그룹 생성하고 <option> 태그로 항목 생성 -->
+			<!-- option 태그에 selected 속성 설정 시 기본값으로 선택 -->
+			<!-- option 태그에 disabled 속성 설정 시 비활성화(= 선택 불가) -->
+			직업 : 
+			<select>
+				<option>직업을 선택하세요</option>
+				<option selected>개발자</option> <!-- 기본값으로 선택되어 있음 -->
+				<option>아르바이트</option>
+				<option disabled>건물주(선택불가)</option> <!-- 선택 자체가 불가능 -->
+			</select>
+			<br>
+			<hr>
+			날짜 :
+			<input type="date"><br> 
+			시각 :
+			<input type="time"><br> 
+			
+			<!-- type 속성 file 지정 시 파일 업로드 가능한 버튼 생성됨 -->
+			업로드 파일 : 
+			<input type="file"><br>
+		</fieldset>
+		
+		<fieldset>
+			<legend>버튼 영역</legend>
+			<!-- type 속성 button 지정 시 일반 버튼 생성 -->
+			<!-- 일반 버튼은 value 속성 생략 시 버튼 텍스트 없음 -->
+			<input type="button">
+			<input type="button" value="클릭"><br>
+			<!-- type 속성 submit 지정 시 전송 역할 수행 버튼 생성 -->
+			<!-- submit 버튼은 value 속성 생략 시 "제출" 텍스트 표시 -->
+			<input type="submit">
+			<input type="submit" value="회원가입"><br>
+			<!-- type 속성 reset 지정 시  버튼 생성 -->
+			<!-- reset 버튼은 value 속성 생략 시 "초기화" 텍스트 표시 -->
+			<!-- reset 버튼 클릭 시 같은 <form> 태그 내의 모든 입력 요소 처음 상태로 되돌림 -->
+			<input type="reset">
+		</fieldset>
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

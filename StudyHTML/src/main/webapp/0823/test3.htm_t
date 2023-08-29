@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>test3.html - 영역 태그</h1>
+	<!-- 
+	영역 태그(div, span)
+	1. div 태그 : 지정된 태그(영역) 좌우에 다른 요소가 올 수 없는 영역으로 선언
+	              (다른 요소가 올 경우 다음 라인에 요소가 표시됨 = 자동 줄바꿈을 통해 영역 구분)
+	2. span 태그 : 지정된 태그 좌우에 다른 요소가 올 수 있는 영역으로 선언
+	-->
+	<!-- div 태그를 두 번 사용하여 문장 작성 시, 두 div 태그는 서로 다른 라인에 표시됨  -->
+	<div>Lorem ipsum dolor sit amet</div><div>Lorem ipsum dolor sit amet</div>
+	<hr>
+	<!-- span 태그를 두 번 사용하여 문장 작성 시, 두 span 태그는 서로 나란히 표시됨 -->
+	<span>Lorem ipsum dolor sit amet</span><span>Lorem ipsum dolor sit amet</span>
+	<hr>
+	<!-- div 태그도 align 속성으로 정렬 가능 -->
+	<div align="center">Lorem ipsum dolor sit amet</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
