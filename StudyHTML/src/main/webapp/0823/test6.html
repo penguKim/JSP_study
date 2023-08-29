@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>test.html - 폼 태그</h1>
+	<!-- 
+	<form> 태그 = 양식 태그
+	- 사용자와 웹어플리케이션(사이트)간의 상호 작용이 가능하도록 해주는 태그(기술)
+	- 사용자로부터 입력하는 데이터 형식을 제공하는 태그들을 묶어주는 태그이며
+	  입력된 데이터를 다른 페이지로 전송하는 역할을 수행하는 태그
+	  => 전송되는 데이터는 서버측(JSP 등 = 백엔드)에서 처리할 수 있음
+	- <form></form> 형식으로 사용하며 시작태그와 끝태그 사이에 또 다른 form 태그가 올 수 없음 
+	
+	< form 태그 내부에서 사용 가능한 입력 양식 태그 >
+	1. <input type="text"> : 사용자로부터 텍스트 한 줄 입력받는 속성
+	2. <input type="number"> : 사용자로부터 숫자를 입력받는 속성
+	3. <input type="password"> : 사용자로부터 텍스트 한 줄 입력받는 속성(입력 데이터 숨김 처리)
+	4. <input type="checkbox"> : 사용자로부터 복수개의 항목을 체크하도록 하는 속성(체크박스)
+	5. <input type="radio"> : 사용자로부터 단일 항목을 선택하도록 하는 속성(라디오버튼)
+	   => 주의! name 속성값이 같은 항목끼리만 그룹화를 통해 단일 항목 선택이 가능하도록 변경됨
+	6. <input type="date"> : 사용자로부터 날짜를 선택하도록 하는 속성(캘린더 선택 또는 입력 가능)
+	7. <input type="button"> : 클릭 동작을 받도록 하는 속성(별도의 기능 연결 필요 - 자바스크립트)
+	8. <input type="submit"> : 버튼과 생김새 동일하나 <form> 태그 내의 입력 항목들을
+	                           action 속성에 지정된 위치로 전송 및 이동하는 역할
+	9. <input type="reset"> : 버튼과 생김새 동일하나 <form> 태그 내의 입력 항목들에 
+	                          입력된 데이터를 초기화하는 역할
+	---------------------------------------------------------------------------------------------
+	10. <select></select> & <option></option>
+	    : 사용자로부터 option 태그에 지정된 항목을 선택하도록 하는 태그(셀렉트박스 또는 콤보박스)
+	11. <textarea></textarea> : 여러 줄을 입력받을 수 있는 태그
+	-->
+	<!-- 입력 양식을 하나로 묶어줄 form 태그 작성 -->
+	<!-- submit 버튼 클릭 시 action 속성에 지정된 URL 또는 파일로 이동하면서 입력 데이터 모두 전송 처리 -->
+	 <form action="test6_result.html">
+	 	<fieldset>
+	 		<legend>텍스트 입력 항목 연습</legend>
+		 	<!-- <input> 태그를 사용하여 기본 입력 항목 생성 -->
+			<!-- type 속성을 통해 다양한 형식의 입력 요소 지정 가능 -->
+		 	<input type="text"><br> <!-- 일반적인 텍스트 입력 항목 표시됨 -->
+		 	<!-- 텍스트박스에 placeholder 속성을 통해 입력창 배경에 텍스트 표시 가능 -->
+		 	<input type="text" placeholder="이름을 입력하세요"><br>
+		 	<!-- name 속성 지정 시 데이터 전송 시 사용할 이름 지정 가능 -->
+			<!-- value 속성 지정 시 입력 값을 미리 설정(표시) 가능 -->
+		 	<input type="text" name="id" value="admin"><br>
+		 	<!-- readonly 속성 지정 시 입력창 잠금(= 데이터 편집 불가 = 읽기 전용) -->
+			<!-- readonly 또는 readonly="readonly" 모두 사용 가능 -->
+		 	<input type="text" name="name" value="홍길동" readonly="readonly"><br>
+		 	<!-- disabled 속성 지정 시 입력창 비활성화(readonly 와 유사하나 역할 다름) -->
+		 	<input type="text" name="name2" value="홍길동" disabled="disabled"><br>
+		 	
+		 	<!-- type 속성에 "number" 지정 시 숫자 입력만 가능한 입력창 생성 -->
+		 	<input type="number"><br>
+		 	
+		 	<input type="password" name="passwd" placeholder="패스워드 입력"><br>
+		 	
+<!-- 		 	<textarea rows="5" cols="30"></textarea> -->
+		 	<textarea rows="5" cols="30">안녕하세요</textarea>
+		</fieldset>
+		
+		<fieldset>
+			<legend>선택 항목 연습</legend>
+			
+			성별 :
+			<input type="radio" name="gender">남
+			<input type="radio" name="gender" checked>여<br>
+			성별 :
+			<input type="radio" name="gender2" id="gender_male"><label for="gender_male">남</label>
+			<input type="radio" name="gender2" id="gender_female"><label for="gender_female">여</label><br>
+			
+			취미 :
+			<input type="checkbox" name="hobby" id="hobby1"><label for="hobby1">등산</label>
+			<input type="checkbox" name="hobby" checked>프로그래밍
+			<input type="checkbox" name="hobby">게임<br>
+			
+			직업 :
+			<select>
+				<option>직업을 선택하세요</option>
+				<option selected>개발자</option>
+				<option>아르바이트</option>
+				<option disabled>건물주(선택불가)</option>
+			</select>
+			<br>
+			<hr>
+			날짜 :
+			<input type="date"><br>
+			시각 :
+			<input type="time"><br>
+			
+			
+			업로드 파일 :
+			<input type="file"><br>
+		</fieldset>
+	 	 	
+	 	<fieldset>
+	 		<legend>버튼 영역</legend>
+	 		
+	 		<input type="button">
+	 		<input type="button" value="클릭"><br>
+	 		
+	 		<input type="submit">
+	 		<input type="submit" value="회원가입"><br>
+	 		
+	 		<input type="reset">
+	 	</fieldset>
+	 	
+	 </form>
+	 
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
