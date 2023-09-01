@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	
+
+</script>
+</head>
+<body>
+	<h1>테이블 만들기</h1>
+	
+	<table border="1">
+	<tr>
+		<th colspan="10">테이블 연습</th>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+		<td>5</td>
+		<td>6</td>
+		<td>7</td>
+		<td>8</td>
+		<td>9</td>
+		<td>10</td>
+	</tr>
+	</table>
+	<hr>
+	<table border="1">
+	<tr>
+		<th colspan="10">테이블 연습</th>
+	</tr>
+		<!--  자바스크립트를 활용하여 반복되는 HTML 태그를 반복문으로 처리 가능(전체로 가능) -->
+		<!--  1개 행에 10개의 열글 생성하여 1 ~ 10 까지 데이터 표시 => for문으로 처리 -->
+		<tr>
+			<script>
+				// for문을 사용하여 1 ~ 10 까지 1씩 증가하도록 처리
+				for(let i = 1; i <= 10; i++) {
+					// 제어변수 i값을 데이터로 활용하여 <td></td> 태그 반복
+					document.write("<td>" + i + "</td>");
+				}
+			</script>
+		</tr>
+	</table>
+</body>
+</html>
