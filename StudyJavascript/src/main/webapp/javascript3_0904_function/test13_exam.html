@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// [ 1. 전달인자도 없고, 리턴값도 없는 함수 연습 ]
+	// 1. "Hello, World!" 문자열을 출력하는 hello() 함수 정의
+	function hello() {
+		document.write("Hello, World!<br>");
+	} // hello() 함수 끝
+	
+	// ------------------------------------------
+	// 2. "Hello, World!" 문자열을 10번 출력하는 hello2() 함수 정의
+	function hello2() {
+		for(let i = 1; i <=10; i++) {
+			document.write(i + " : Hello, World!<br>");			
+		}
+	}
+	
+	// ------------------------------------------
+	// 3. <hr> 태그를 출력하는 hr() 함수 정의
+	function hr() {
+		document.write("<hr>");		
+	}
+	// ------------------------------------------
+	// 4. sum() 함수 정의
+	// => 1 ~ 10 까지 정수의 합을 계산하여 결과값 출력
+	function sum() {
+		let total = 0;
+		for(let i = 1; i <= 10; i++) {
+			total += i;
+		}
+		document.write("1 ~ 10 까지의 합 = " + total);
+	}
+	
+	// -------------------------------------------------------
+	/*
+	[ 5. 숫자 맞추기 게임을 수행하는 number_game() 함수 정의 ]
+	1. 정수 1개를 입력받기 
+	// ---------------------------------------
+	2. 기존에 저장된 정수와 비교하여 일치 여부를 확인한 후
+	   1) 기존의 저장된 숫자가 입력받은 숫자보다 클 경우 : "입력한 숫자는 정답보다 작습니다!" 출력
+	   2) 기존의 저장된 숫자가 입력받은 숫자보다 작을 경우 : "입력한 숫자는 정답보다 큽니다!" 출력
+	   3) 기존의 저장된 숫자가 입력받은 숫자가 같을 경우 : "정답입니다!" 출력
+	// ---------------------------------------
+	=> 이 때, 정답이 되기까지 입력한 횟수를 계산하여 "x번만에 정답입니다!" 출력
+	
+	ex) 저장된 숫자(정답) : 5, 입력받은 숫자 : 10
+	    "입력한 숫자는 정답보다 큽니다!" 출력
+	ex2) 저장된 숫자(정답) : 5, 입력받은 숫자 : 3
+   		"입력한 숫자는 정답보다 작습니다!" 출력
+	ex2) 저장된 숫자(정답) : 5, 입력받은 숫자 : 5
+   		"정답입니다!" 출력
+	*/
+	
+	function number_game() {
+		let correctNum = 10; // 정답
+		let inputNum = prompt("정수를 입력하세요.");
+		let count = 1;
+		if(inputNum != correctNum) {
+			if(inputNum < correctNum) {
+				document.write("입력한 숫자는 정답보다 작습니다!");
+			} else if(inputNum > correctNum) {
+				document.write("입력한 숫자는 정답보다 큽니다!");			
+			} 						
+			count++;
+		} else if(inputNum == correctNum) {
+			document.write("정답입니다!<br>");	
+			document.write(count + "번만에 정답입니다!");
+		}
+	}
+
+	
+	//	===========================================
+	// 1. hello() 함수 호출
+// 	hello();
+// 	document.write("<hr>");
+	// hr() 함수를 호출하여 <hr> 태그 한 줄 출력
+// 	hr();
+	
+	// 2. hello2() 함수 호출
+// 	hello2();
+// 	hr();
+	
+	// 3. sum() 함수 호출
+// 	sum();
+// 	hr();
+	
+	// 5. number_game() 함수 호출
+	number_game();
+</script>
+</head>
+<body>
+
+</body>
+</html>
