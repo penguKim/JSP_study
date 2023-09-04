@@ -58,18 +58,19 @@
 		let correctNum = 10; // 정답
 		let inputNum = prompt("정수를 입력하세요.");
 		let count = 1;
-		if(inputNum != correctNum) {
-			if(inputNum < correctNum) {
-				document.write("입력한 숫자는 정답보다 작습니다!");
-			} else if(inputNum > correctNum) {
-				document.write("입력한 숫자는 정답보다 큽니다!");			
-			} 						
+		while(correctNum != inputNum){
+			if(correctNum > inputNum) {
+				alert("입력한 숫자는 정답보다 작습니다!");
+			} else if(correctNum < inputNum) {
+				alert("입력한 숫자는 정답보다 큽니다!");
+			}
 			count++;
-		} else if(inputNum == correctNum) {
-			document.write("정답입니다!<br>");	
-			document.write(count + "번만에 정답입니다!");
+			inputNum = prompt("정수를 입력하세요.");
 		}
-	}
+		document.write("정답입니다!<br>");
+		document.write(count + "번만에 정답입니다!");
+		
+	}	
 
 	
 	//	===========================================
