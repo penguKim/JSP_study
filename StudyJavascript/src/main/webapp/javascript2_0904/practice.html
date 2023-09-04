@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script type="text/javascript">
+	document.write("<h1>자리 배치도</h1>");
+	// 입장객은 몇 명인가요?
+	// 한 줄에 몇 명씩 앉습니까?
+	let audience = prompt("입장객은 몇 명인가요?");
+	let colLine = prompt("한 줄에 몇 명씩 앉습니까?");
+	document.write("<table border='1'>");
+	let rowLine = audience / colLine;
+	let count = 1;
+	for(let i = 1; i <= rowLine; i++) {
+		document.write("<tr>");
+		for(let j = 1; j <= colLine; j++) {
+			document.write("<td>" + count + "</td>");
+		}
+		count++;
+		document.write("</tr>");
+	}
+	
+	document.write("</table>");
+	
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
