@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	
+	// for문 사용하여 "Hello, World!" 3번 반복 출력
+	for(let i = 1; i <=3; i++) {
+		document.write(i + " : Hello, World!<br>");
+	}
+	document.write("<hr>");
+	
+	// while문 사용하여 위와 동일한 작업 수행
+	let i = 1; // 초기식
+	while(i <= 3) { // 조건식
+		document.write(i + " : Hello, World!<br>");
+		i++; // 증감식 (while문 내부에 위치)
+	}
+	document.write("<hr>");
+
+	// 정수 1개를 입력받아 변수 num 에 저장 후, 1 ~ num 까지 차례대로 출력
+	// ex) 5 입력 시 1 2 3 4 5 출력
+	let num = prompt("정수를 입력하세요");
+	i = 1;
+	while(i <= num) {
+		document.write(i + " ");
+		i++;
+	}
+	document.write("<hr>");
+	
+	// 정수 1개를 입력받아 변수 num 에 저장 후, 1 ~ num 까지의 합 계산하여 출력
+	// ex) 10 입력 시 1 ~ 10 까지 정수의 합 = 55 출력
+	let total = 0; // 합계를 누적할 누적변수 선언(합계를 위한 초기값 0 지정)
+// 	num = prompt("정수를 입력하세요.");
+	i = 1;
+	while(i <= num) {
+		total += i;
+		i++;
+	}
+	document.write("1 ~ " + num + " 까지 정수의 합 = " + total);
+	document.write("<hr>");
+	
+		
+</script>
+</head>
+<body>
+
+</body>
+</html>
