@@ -5,23 +5,23 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function check() {
-		// 셀렉트박스의 선택된 항목에 접근하려면 셀렉트박스 요소(태그)의 value 속성값 활용
-		// => 선택된 항목(option 태그)의 value 값이 셀렉트박스 자체의 value 값으로 설정됨
+// 		셀렉트박스의 선택된 항목에 접근하려면 셀렉트박스 요소(태그)의 value 속성값 활용
+// 		=> 선택된 항목(option 태그)의 value 값이 셀렉트박스 자체의 value 값으로 설정됨
 // 		alert(document.fr.fruits.value);
 		// div 태그(infoArea) 영역에 선택된 항목값 출력
 		document.querySelector("#infoArea").innerHTML = 
 			document.fr.fruits.value;
 		
-		// 현재 셀렉트박스 선택 항목이 "선택하세요(value 속성값이 "")" 일 경우
-		// 다른 항목 선택을 요구하는 경고창(과일 선택 필수!) 출력 후 셀렉트박스에 포커스 요청
+// 		현재 셀렉트박스 선택 항목이 "과일을 선택하세요(value 속성값이 "")" 일 경우
+// 		다른 항목 선택을 요구하는 경고창(과일 선택 필수!) 출력 후 셀렉트박스에 포커스 요청
 // 		1) 셀렉트박스 value 속성값이 널스트링("") 인지 판별
 // 		if(document.fr.fruits.value == "") {
 // 			alert("과일 선택 필수!");
 // 			document.fr.fruits.focus();
 // 		}
 		
-		// 2) 셀렉트박스 내의 option 태그 항목들이 options 라는 배열로 관리되므로
-		//    첫번째 배열 요소의 속성 중 selected 속성값이 true 인지 판별
+// 		2) 셀렉트박스 내의 option 태그 항목들이 options 라는 배열로 관리되므로
+// 		   첫번째 배열 요소의 속성 중 selected 속성값이 true 인지 판별
 			if(document.fr.fruits.options[0].selected) {
 				alert("과일 선택 필수!");
 				document.fr.fruits.focus();
@@ -53,8 +53,8 @@
 <body>
 	<h1>test32.html</h1>
 	<form action="test32_2.html" name="fr">
-		<!--  폼 태그 내에서 셀렉트박스에 required 속성 지정 시 아무것도 선택하지 않아도 submit 동작 -->
-		<!-- 즉, 기본적으로 하나의 항목이 무조건 표시되므로 선택된 것으로 간주되어 불필요 -->
+<!-- 		 폼 태그 내에서 셀렉트박스에 required 속성 지정 시 아무것도 선택하지 않아도 submit 동작 -->
+<!-- 		즉, 기본적으로 하나의 항목이 무조건 표시되므로 선택된 것으로 간주되어 불필요 -->
 <!-- 		<select name="fruits"> -->
 <!-- 			<option value="Apple">사과</option> -->
 <!-- 			<option value="Strawberry" selected="selected">딸기</option> 기본값으로 선택됨 -->
@@ -77,7 +77,7 @@
 		<!-- 
 		셀렉트박스의 항목이 변경(선택)됨을 감지하는 이벤트 : change
 		=> 함수 호출 시 파라미터로 this.value 전당 시 선택된 항목값 직접 함수로 전달 가능
-		 -->		
+		-->		
 		<select name="fruits2" onchange="itemSelected(this.value)">
 			<option value="">과일을 선택하세요</option>
 			<option value="Apple">사과</option>
