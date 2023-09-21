@@ -73,7 +73,6 @@
 	}
 	function checkSubmit() {
 		let hobbys = document.joinForm.hobby;
-
 		if(document.joinForm.name.value == "") {
 			alert("이름 입력 필수!");
 			return false;
@@ -101,7 +100,7 @@
 		} else if(document.joinForm.job.value == "") {
 			alert("직업 선택 필수!");
 			return false;
-		} else if(!document.joinForm.gender[0].checked && !document.joinForm.gender[1].checked){
+		} else if(document.joinForm.gender.value == ""){
 			alert("성별 선택 필수!");
 			return false;
 		} else if(!hobbys[0].checked && !hobbys[1].checked && !hobbys[2].checked) {
