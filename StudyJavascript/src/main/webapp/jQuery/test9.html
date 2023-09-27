@@ -37,7 +37,7 @@
 // 			}
 			
 			// is() 메서드로 동일한 판별 가능 => 가상선택자 :checked 활용하여 체크상태 판별
-// 			if($("#allCheck").is(":checked")) { // 체크 시
+// 			if($("#allCheck").is(":checked")) { // => $("#allCheck").is($("#allCheck").prop("checked")) 와 동일
 // 				$(":checkbox[name=check]").prop("checked", true);
 // 			} else { // 체크 해제 시
 // 				$(":checkbox[name=check]").prop("checked", false);
