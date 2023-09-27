@@ -26,13 +26,13 @@
 			// => prop() 메서드 파라미터로 속성명, 속성값 전달 시 속성 변경 가능
 			// => input[type=checkbox] 대신 가상선택자 :checkbox 사용 가능
 // 			if($("#allCheck").prop("checked")) { // 체크 시
-// 				$("input[type=checkbox]").prop("checked", true);
+// // 				$("input[type=checkbox]").prop("checked", true);
 			
- 				// :checkbox[name=name속성값] 지정 시 동일한 그룹의 체크박스만 선택 가능
+// 				// :checkbox[name=name속성값] 지정 시 동일한 그룹의 체크박스만 선택 가능
 // 				$(":checkbox[name=check]").prop("checked", true);
 // 			} else { // 체크 해제 시
-// 				$("input[type=checkbox]").prop("checked", false);
-// 				$(":checkbox").prop("checked", false);
+// // 				$("input[type=checkbox]").prop("checked", false);
+// // 				$(":checkbox").prop("checked", false);
 // 				$(":checkbox[name=check]").prop("checked", false);
 // 			}
 			
@@ -90,10 +90,10 @@
 		}); // 셀렉트박스 이벤트 끝
 		
 		// 텍스트박스에 대한 입력값 처리 이벤트
-// 		keyup : 키보드를 눌렀다 "뗄 때" 이벤트 수행(값 변경과는 무관)
-// 		blur : 입력창에서 "포커스가 해제될 때" 이벤트 수행(값 변경과는 무관)
-// 		change : 입력창에서 "포커스가 해제될 때" "이전 값 기준으로 값 변경되면" 이벤트 수행
-// 		         => 이전 값 기준 값이 변경되지 않았을 경우 이벤트 동작 X
+		// keyup : 키보드를 눌렀다 "뗄 때" 이벤트 수행(값 변경과는 무관)
+		// blur : 입력창에서 "포커스가 해제될 때" 이벤트 수행(값 변경과는 무관)
+		// change : 입력창에서 "포커스가 해제될 때" "이전 값 기준으로 값 변경되면" 이벤트 수행
+		//          => 이전 값 기준 값이 변경되지 않았을 경우 이벤트 동작 X
 		// ----------
 		// id="keyword" 입력창에 대한 keyup 이벤트 핸들링
 // 		$("#keyword").on("keyup", function() {
