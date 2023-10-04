@@ -95,7 +95,7 @@
 	//    기본 단위를 모두 계산 과정으로 명시하면 차후 유지보수 편리
 // 	let differenceTime = (nowTime - targetTime) / 1000 / 60 / 60 / 24;
 	
-	// 소수점 절상(버림)을 위해 Math 객체의 round() 메서드를 활용
+	// 소수점 절삭(버림)을 위해 Math 객체의 round() 메서드를 활용
 	let differenceTime = Math.round((nowTime - targetTime) / 1000 / 60 / 60 / 24);
 	document.write("두 날짜의 차 : " + differenceTime + "일<br>");
 	
