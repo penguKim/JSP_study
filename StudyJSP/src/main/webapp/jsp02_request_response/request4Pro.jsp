@@ -10,7 +10,8 @@
 	<h1>request4Pro.jsp - 로그인 처리</h1>
 	<%
 	// request4Form.jsp 페이지로부터 전달받은 아이디, 패스워드 가져와서 변수에 저장 및 출력
-	
+	String id = request.getParameter("id");
+	String passwd = request.getParameter("passwd");
 	
 	/*
 	[ 자바 코드를 사용하여 아이디, 패스워드 판별 ]
@@ -21,7 +22,11 @@
 	*/
 	String dbId = "admin";
 	String dbPasswd = "1234";
-	
+	if(id.equals(dbId) && passwd.equals(dbPasswd)) {
+		response.sendRedirect("request4Pro_responseResult1.jsp");
+	} else {
+		response.sendRedirect("request4Pro_responseResult2.jsp");
+	}
 	%>
 </body>
 </html>
