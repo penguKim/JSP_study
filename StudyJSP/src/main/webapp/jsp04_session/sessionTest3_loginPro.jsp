@@ -1,0 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+// 폼 파라미터(아이디, 패스워드) 가져와서 변수에 저장 및 출력
+String id = request.getParameter("id");
+String passwd = request.getParameter("passwd");
+out.print("아이디 : " + id + ", 패스워드 : " + passwd);
+// 아이디, 패스워드 판별에 사용할 임시 데이터
+String dbId = "admin";
+String dbPasswd = "1234";
+
+// 아이디가 "admin" 이고, 패스워드가 "1234" 이면 로그인 성공, 아니면 로그인 실패
+// => 로그인 성공 시 "로그인 성공!" 출력, 로그인 실패 시 "로그인 실패!" 출력
+if(id.equals(dbId) && passwd.equals(dbPasswd)) {
+// 	out.print("<h3>로그인 성공!</h3>");
+	
+	// 세션 객체에 로그인 성공한 아이디를 "sId" 라는 속성명으로 저장하기
+	session.setAttribute("sId", id);
+	
+	// 메인페이지(sessionTest3_main.jsp) 페이지로 리다이렉트
+	response.sendRedirect("sessionTest3_main.jsp");
+} else {
+// 	out.print("<h3>로그인 실패!</h3>");
+	// 자바스크립트로 "로그인 실패!" 출력 후 이전페이지로 돌아가기
+	%>
+	<script>
+		alert("로그인 실패!");
+		history.back();
+	</script>
+	<%
+}
+%>
