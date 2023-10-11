@@ -16,6 +16,7 @@
 	<main>
 		<div align="center">
 			<h1>메인 페이지</h1>
+			현재 세션 아이디 : <%=session.getAttribute("sId") %>
 		</div>
 	</main>
 	<hr>

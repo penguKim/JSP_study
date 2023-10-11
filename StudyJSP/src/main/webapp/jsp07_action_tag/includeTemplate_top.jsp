@@ -41,3 +41,10 @@ String id = (String)session.getAttribute("sId");
 		<%}%>
 	</h4>
 </div>
+<div align="center">
+	<a href="#">상단메뉴1</a>&nbsp;&nbsp;&nbsp;
+	<a href="#">상단메뉴2</a>&nbsp;&nbsp;&nbsp;
+	<a href="#">상단메뉴3</a>&nbsp;&nbsp;&nbsp;
+	<a href="#">상단메뉴4</a>&nbsp;&nbsp;&nbsp;
+	<a href="#">상단메뉴5</a>
+</div>
