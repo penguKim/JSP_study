@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>StudyServlet</display-name>
+<!--  컨텍스트 루트(/StudyServlet 경로)가 요청되면 기본적으로 실행할 대상을  -->
+<!--  welcome-file-list 태그 내의 welcome-file 태그에 기술  -->
+<!--  지정된 파일이 webapp 디렉토리에 존재하지 않으면 404 Not found 오류 발생  -->
+	 <welcome-file-list>
+	   <welcome-file>index.html</welcome-file>
+	   <welcome-file>index.jsp</welcome-file>
+	   <welcome-file>index.htm</welcome-file>
+	   <welcome-file>default.html</welcome-file>
+	   <welcome-file>default.jsp</welcome-file>
+	   <welcome-file>default.htm</welcome-file><!--  필요한 파일이 있으면 추가 가능  -->
+	 </welcome-file-list>
+  
+	<!-- ========================================================================== -->
+	<!--  서블릿 주소(URL)에 대한 매핑(Mapping) 작업 수행(서블릿 주소와 서블릿 클래스 연결)  -->
+	<!--  <servlet> 태그와 <servlet-mapping> 태그 작성하여 매핑(태그의 순서는 무관)  -->
+	<!-- 1. 서블릿 요청 시 실행할 서블릿 클래스에 대한 이름을 지정 -->  
+	<servlet>
+		<!-- 서블릿 이름(<servlet-name>)은 <servlet-mapping> 태그에서 지정할 이름과 동일해야함 -->
+		<servlet-name>TestServlet</servlet-name> <!--  매핑에 사용할 서블릿 이름 -->
+		<servlet-class>test.TestMyServlet</servlet-class> <!-- 매핑에 사용(=연결)될 클래스명(패키지명 포함, .java 제외) -->
+	</servlet>
+	
+	<!-- 2. 서블릿 클래스와 서블릿 주소(URL)에 대한 매핑(=연결) -->
+	<servlet-mapping>
+		<!-- 서블릿 이름은 <servlet> 태그에서 지정할 이름과 동일해야함 -->
+		<servlet-name>TestServlet</servlet-name>
+		<!-- 해당 서블릿 클래스와 매핑될 주소(URL)는 <url-pattern> 태그로 지정 -->
+		<!-- /서블릿주소 또는 *.패턴명 -->
+		<url-pattern>/myServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!-- ========================================================== -->
+	<!-- "/myServlet2" 서블릿 주소에 대해 TestMyServlet2 클래스 매핑 -->
+	<servlet>
+		<servlet-name>TestServlet2</servlet-name>
+		<servlet-class>test.TestMyServlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TestServlet2</servlet-name>
+		<url-pattern>/myServlet2</url-pattern>
+	</servlet-mapping>
+</web-app>
