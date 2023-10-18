@@ -13,7 +13,11 @@
 		<!-- jsp09_jdbc/JdbcConnectMainServlet 클래스 <-> "JdbcConnectMain" 서블릿 매핑 -->
 		<!-- jsp09_jdbc/JdbcConnect1Servlet 클래스 <-> "JdbcConnect1" 서블릿 매핑 -->
 		<!-- jsp09_jdbc/JdbcConnect2Servlet 클래스 <-> "JdbcConnect2" 서블릿 매핑 -->
-		<h3><a href="JdbcConnect1">JDBC 연동 1단계</a></h3>
+		<!-- jsp09_jdbc/JdbcConnect3Insert 클래스 <-> "JdbcConnect3_INSERT" 서블릿 매핑 -->
+		<!-- jsp09_jdbc/JdbcConnect3Update 클래스 <-> "JdbcConnect3_UPDATE" 서블릿 매핑 -->
+		<!-- jsp09_jdbc/JdbcConnect3Delete 클래스 <-> "JdbcConnect3_DELETE" 서블릿 매핑 -->
+		<!-- jsp09_jdbc/JdbcConnect3Select 클래스 <-> "JdbcConnect3_SELECT" 서블릿 매핑 -->
+		<h3><a href="JdbcConnect1">JDBC 연동 1단계</a></h3><!-- http://localhost:8080/StudyJSP/JdbcConnect1 -->
 		<h3><a href="JdbcConnect2">JDBC 연동 2단계</a></h3>
 		<h3><a href="JdbcConnect3_INSERT">JDBC 연동 3&4단계 - INSERT</a></h3>
 		<h3><a href="JdbcConnect3_UPDATE">JDBC 연동 3&4단계 - UPDATE</a></h3>

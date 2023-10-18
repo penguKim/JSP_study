@@ -27,6 +27,11 @@ public class JdbcConnectMainServlet extends HttpServlet {
 		// 주소표시줄 : http://localhost:8080/StudyJSP/jsp09_jdbc/jdbc_main.jsp
 		// => 새로운 요청 주소로 변경됨
 		
+		// 만약, 매핑 URL 이 "/jsp09_jdbc/JdbcConnectMain" 일 때
+		// 서브디렉토리 구조가 URL 에 포함되어 있으므로 jdbc_main.jsp 파일명만 명시
+//		response.sendRedirect("jdbc_main.jsp");
+		
+		// ---------------------------------------------------------------
 		// 2) 디스패치
 		//    => 현재 매핑된 URL : http://localhost:8080/StudyJSP/JdbcConnectMain
 		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp09_jdbc/jdbc_main.jsp");
