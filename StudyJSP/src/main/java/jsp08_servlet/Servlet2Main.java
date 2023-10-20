@@ -21,7 +21,7 @@ public class Servlet2Main extends HttpServlet {
 		// => 현재 요청 주소 : http://localhost:8080/StudyJSP/Servlet2Main
 		// => 컨텍스트 루트(StudyJSP)에 해당하는 JSP 디렉토리가 webapp 이므로
 		//    하위 디렉토리 구조까지 명시해야함
-		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp08_servlet//servlet2_main.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp08_servlet/servlet2_main.jsp");
 		dispatcher.forward(request, response);
 	}
 

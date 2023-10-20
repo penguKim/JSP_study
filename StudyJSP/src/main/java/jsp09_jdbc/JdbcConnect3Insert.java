@@ -87,8 +87,8 @@ public class JdbcConnect3Insert extends HttpServlet {
 			// => 리턴받은 PreparedStatement 객체는 SQL 문장을 관리하는 객체
 			// -------------------------------------------------------------
 			// 추가할 레코드의 데이터를 외부로부터 입력받아 변수에 저장했다고 가정
-			int idx = 1;
-			String name = "홍길동";
+			int idx = 2;
+			String name = "이순신";
 			
 			// [ SQL 구문 작성 시 변수값을 SQL 구문에 포함시키는 방법 2가지 ]
 			// 1) SQL 구문 작성 시 문자열 결합을 통해 변수값을 포함(권장하지 않음)

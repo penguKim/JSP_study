@@ -34,10 +34,13 @@ public class JdbcConnect3Update extends HttpServlet {
 			con = DriverManager.getConnection(url, user, pass);
 			System.out.println("DB 연결 성공!");
 			// SQL 구문 작성 및 전달
-			int idx = 10;
-			String sql = "UPDATE jsp09_student SET idx = idx + ? ";
+			// 번호가 2 인 레코드의 이름을 '강감찬'으로 변경
+			int idx = 2;
+			String name = "강감찬";
+			String sql = "UPDATE jsp09_student SET name = ? WHERE idx = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, idx);
+			pstmt.setString(1, name);
+			pstmt.setInt(2, idx);
 			System.out.println(pstmt);
 			// SQL 구문 출력
 			int updateCount = pstmt.executeUpdate();

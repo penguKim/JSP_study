@@ -34,8 +34,12 @@ public class JdbcConnect3Delete extends HttpServlet {
 			con = DriverManager.getConnection(url, user, pass);
 			System.out.println("DB 연결 성공!");
 			// SQL 구문 작성 및 전달
-			String sql = "DELETE FROM jsp09_student";
+			int idx = 1;
+			String name = "홍길동";
+			String sql = "DELETE FROM jsp09_student WHERE idx = ? AND name = ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.setString(2, name);
 			System.out.println(pstmt);
 			// SQL 구문 실행
 			int deleteCount = pstmt.executeUpdate();
@@ -48,7 +52,7 @@ public class JdbcConnect3Delete extends HttpServlet {
 			
 		} catch (SQLException e) {
 			
-			System.out.println("DB 연결 실패! 및 SQL 구문 오류 발생!");
+			System.out.println("DB 연결 실패! 또는 SQL 구문 오류 발생!");
 			e.printStackTrace();
 			
 		} finally {
