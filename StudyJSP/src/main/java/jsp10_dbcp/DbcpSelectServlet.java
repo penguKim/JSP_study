@@ -33,7 +33,6 @@ public class DbcpSelectServlet extends HttpServlet {
 		
 		try {
 			// 3단계. SQL 구문 작성 및 전달
-			// => jsp09_student 테이블에 번호, 이름 추가(INSERT)
 			String sql = "SELECT * FROM jsp09_student";
 			pstmt = con.prepareStatement(sql);
 			System.out.println(pstmt);
