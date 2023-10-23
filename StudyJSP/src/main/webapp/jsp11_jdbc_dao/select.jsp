@@ -16,6 +16,7 @@
 				<tr>
 					<th>번호</th>
 					<th>이름</th>
+				</tr>
 			<%
 			// request 객체에 저장된 학생 목록 객체(List<StudentDTO> 타입) 꺼내서 변수에 저장
 			// => request 객체의 getAttribute() 메서드 활용
