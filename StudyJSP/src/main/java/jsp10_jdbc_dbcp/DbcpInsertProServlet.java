@@ -1,4 +1,4 @@
-package jsp10_dbcp;
+package jsp10_jdbc_dbcp;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -53,7 +53,9 @@ public class DbcpInsertProServlet extends HttpServlet {
 			// INSERT 작업에 대한 결과 판별
 			// => 문장 실행 결과(insertCount)가 0보다 크면 성공, 아니면 실패
 			if(insertCount > 0) {
-				System.out.println("INSERT 성공! - " + insertCount);
+				System.out.println("INSERT 성공! - " + insertCount + "개 레코드");
+				// 학생 목록 조회를 위해 "DbcpSelect" 서블릿 리다이렉트
+				response.sendRedirect("DbcpSelect");
 			} else {
 				System.out.println("INSERT 실패!");
 			}
