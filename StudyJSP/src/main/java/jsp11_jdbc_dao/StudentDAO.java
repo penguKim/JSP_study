@@ -142,4 +142,65 @@ public class StudentDAO {
 		return studentList;
 	}
 	
+	public int update() {
+		
+		int updateCount = 0;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		con = JdbcUtil.getConnection();
+		
+		try {
+			String sql = "UPDATE jsp09_student SET idx = 10";
+			pstmt = con.prepareStatement(sql);
+			
+			updateCount = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류!");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+		return updateCount;
+	}
+	
+	public int delete() {
+		int deleteCount = 0;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		con = JdbcUtil.getConnection();
+		
+		try {
+			String sql = "DELETE FROM jsp09_student";
+			pstmt = con.prepareStatement(sql);
+			
+			deleteCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류!");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+		return deleteCount;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
