@@ -29,6 +29,10 @@ public class DaoInsertProServlet extends HttpServlet {
 		// 데이터베이스 작업을 수행하기 위해 StudentDAO 클래스 인스턴스 생성
 		StudentDAO dao = new StudentDAO();
 		
+		// StudentDAO - insert() 메서드를 호출하여 INSERT 작업 요청
+		// => 파라미터 : 번호(idx), 이름(name)   리턴타입 : int(insertCount)
+//		int insertCount = dao.insert(idx, name);
+		
 		// -----------------------------------------------------------------
 		// 데이터베이스에 사용될 데이터를 각각의 변수로 다루지 않고
 		// 하나의 객체(묶음)로 다루기 위해 DTO 객체를 생성하여 저장 후

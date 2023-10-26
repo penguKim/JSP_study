@@ -12,6 +12,12 @@ public class StudentDTO {
 	private String name;
 	
 	// 필요에 따라 기본 생성자 및 파라미터 생성자 정의 가능
+	public StudentDTO() {}
+	
+	public StudentDTO(int idx, String name) {
+		this.idx = idx;
+		this.name = name;
+	}
 	
 	// 2. Getter/Setter 정의
 	public int getIdx() {
@@ -26,6 +32,7 @@ public class StudentDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	
 	
 }

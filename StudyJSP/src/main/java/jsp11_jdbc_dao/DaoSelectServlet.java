@@ -55,7 +55,6 @@ public class DaoSelectServlet extends HttpServlet {
 		// request 객체의 setAttribute() 메서드를 호출하여 전송할 데이터를 저장해야한다!
 		// 이 때, request 객체가 다음 페이지까지 유지되어야 하므로 디스패치 방식 포워딩 필수!
 		// => 속성명 "studentList" 로 List 객체 저장
-		// => dl wdawdawlkhf;lksahgfe;lashn;
 		request.setAttribute("studentList", studentList);
 		
 		// 학생 목록 정보를 표시하기 위해 jsp11_jdbc_dao/select.jsp 페이지로 포워딩

@@ -9,6 +9,13 @@ import java.util.List;
 
 public class StudentDAO {
 	
+	// 학생 정보 등록 작업을 수행하는 insert() 메서드 정의
+	// => 파라미터 : 번호(idx), 이름(name)   리턴타입 : int(insertCount)
+//	public int insert(int idx, String name) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+	
 	// 회원 가입 작업을 수행하는 insert() 메서드 정의
 	// => 파라미터 : StudentDTO 객체(student)   리턴타입 : int(insertCount)
 	public int insert(StudentDTO student) {
@@ -56,7 +63,7 @@ public class StudentDAO {
 	}
 
 	// 학생 목록 조회 작업을 수행하는 selectStudentList() 메서드 정의
-	// => 파라미터 : 없음   리턴타입 : StudentDTO
+	// => 파라미터 : 없음   리턴타입 : List<StudentDTO>(studentList)
 	public List<StudentDTO> selectStudentList() {
 		// 학생 1명의 정보가 저장되는 StudentDTO 객체 여러개(= 복수개의 레코드) 를
 		// 한꺼번에 저장할 java.util.List 타입 변수 선언
@@ -93,7 +100,7 @@ public class StudentDAO {
 			// => 따라서, 배열 대신 java.util.List 타입 객체(ArrayList 클래스 활용)를 사용하여
 			//    복수개의 StudentDTO 객체를 저장할 수 있다!
 			//    (ArrayList 객체는 배열의 단점을 보완한 개념의 객체이므로 크기 확장 자유)
-			// => 반복문 내에서 StudentDTO 객체를 저장할 List(ArrayList) 객체를 반복문 밖에서 미리 생성 필요
+			// => StudentDTO 객체를 저장할 List(ArrayList) 객체를 반복문 밖에서 미리 생성 필요
 			// => List 객체에 저장될 객체는 무조건 StudentDTO 타입이므로 List<StudentDTO> 지정
 			studentList = new ArrayList<StudentDTO>(); // 업캐스팅
 			
@@ -113,13 +120,13 @@ public class StudentDAO {
 				// 2) StudentDTO 객체에 조회된 번호, 이름 저장
 				student.setIdx(idx);
 				student.setName(name);
-				// 3) 복수개의 레코드(= 복수개의 StudentDTO 객체) 를 List 객체에
-				//    1개 레코드가 저장된 StudentDTO
+				// 3) 복수개의 레코드(= 복수개의 StudentDTO 객체) 를 저장할 List 객체에
+				//    1개 레코드가 저장된 StudentDTO 객체를 추가
 				// => List 객체의 add() 메서드 활용
-				// => 단, List 객체는 반복문 밖에서 미리 생성
+				// => 단, List 객체는 반복문 밖에서 미리 생성되어 있어야 한다!
 				studentList.add(student);
 				// => 이 작업이 반복되면 최종적으로 StudentDTO 타입 객체 복수개가
-				//    하나의 List(ArrayList) 객체에 차례대로 저장된다! (배열과 유사)
+				//    하나의 List(ArrayList) 객체에 차례대로 저장된다! (배열 유사)
 				// -----------------------------------------------------------
 			}
 			
