@@ -33,15 +33,14 @@ public class LoginProServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("sId", id);
 			
+			// Cookie 객체를 생성하여 "cookieId" 라는 속성명으로 로그인 성공한 아이디 저장
 			Cookie cookie = new Cookie("cookieId", id);
 			
 			// 아이디 저장 체크박스 값(rememberId)이 null 인지 판별
 			if(rememberId == null) { // 미체크 = 아이디 저장 안 함
 				// 기존 쿠키 정보의 쿠키 아이디 삭제(기존 쿠키 아이디 정보에 유효기간 0 설정)
 				cookie.setMaxAge(0); // 쿠키 즉시 삭제
-				response.addCookie(cookie);
 			} else { // 체크 = 아이디 저장
-				// Cookie 객체를 생성하여 "cookieId" 라는 속성명으로 로그인 성공한 아이디 저장
 				// => 유효기간 : 1일
 				cookie.setMaxAge(60 * 60 * 24);
 			}

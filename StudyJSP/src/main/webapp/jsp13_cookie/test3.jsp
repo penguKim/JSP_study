@@ -19,7 +19,7 @@
 				<h3>안녕하세요. 쿠키 예제 사이트입니다.</h3>
 			</c:when>
 			<c:when test="${cookie.lang.value eq 'en-us' }">
-				<h3>hi</h3>
+				<h3>Hello, this is Cookie Example Site.</h3>
 			</c:when>
 			<c:otherwise>
 				<h3>안녕하세요. 쿠키 예제 사이트입니다.</h3>
@@ -31,8 +31,20 @@
 		<select name="lang" onchange="location.href='Test3Cookie?lang=' + this.value">
 			<option value=""></option>
 			<%-- 선택한 언어로 옵션명도 해당언어로 띄우기 --%>
-			<option value="ko-kr">한국어</option>
-			<option value="en-us">영어</option>
+			<c:choose>
+				<c:when test="${cookie.lang.value eq 'ko-kr' }">			
+					<option value="ko-kr">한국어</option>
+					<option value="en-us">영어</option>
+				</c:when>
+				<c:when test="${cookie.lang.value eq 'en-us' }">			
+					<option value="ko-kr">Korean</option>
+					<option value="en-us">English</option>
+				</c:when>
+				<c:otherwise>
+					<option value="ko-kr">한국어</option>
+					<option value="en-us">영어</option>
+				</c:otherwise>
+			</c:choose>
 		</select>
 	</div>
 </body>
