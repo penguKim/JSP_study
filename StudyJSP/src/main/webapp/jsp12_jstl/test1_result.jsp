@@ -75,7 +75,7 @@
 		<%-- EL 을 사용하여 session 객체의 속성 처리(내장객체 sessionScope 활용) --%>
 		세션의 testValue 값 : ${sessionScope.testValue }<br> <%-- <%=session.getAttribute("testValue")%> 코드 대체 --%>
 		<%-- 세션 객체 내에 Student 객체를 통해 멤버변수값 접근 --%>
-		<%-- 주의! Getter 메서드명이 아니라, 멤버변수명 지정(단, 내부적으로는 멤버변수가 호출됨) --%>
+		<%-- 주의! Getter 메서드명이 아니라, 멤버변수명 지정(단, 내부적으로는 Getter 메서드가 호출됨) --%>
 		세션의 Student 객체의 idx 값 : ${sessionScope.student.idx }<br>
 		세션의 Student 객체의 name 값 : ${sessionScope.student.name }
 		<%-- 객체 내에 존재하지 않는 멤버에 접근 시 오류 발생함 --%>
