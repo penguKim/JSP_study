@@ -39,8 +39,8 @@ JSTL(JSP Standard Tag Library)
 <%-- 단, 각 영역에 저장된 변수를 영역 객체를 통해 접근 할 수는 있다! --%>
 	<h3>pageContext.getAttribute(str) = <%=pageContext.getAttribute("str") %></h3>
 	<%--
-	자바 코드로 생성(선언)한 변수를 JSTL(EL) 에서 기본적으로 접근 불가!
-	따라서, 자바 코드로 생성한 변수를 접근하기 위해
+	자바 코드로 생성(선언)한 변수는 JSTL(EL) 에서 기본적으로 접근 불가!
+	따라서, 자바 코드로 생성한 변수에 접근하기 위해
 	1. 선언된 변수를 각 영역 객체의 속성값으로 저장 후 접근
 	   ex) pageContext.setArrtubute("xxx"); => ${pageScope.xxx}
 	       단, 각 영역객체명 생략 가능함(좁은 범위(page) -> 넓은 범위(application) 방향으로 탐색)
