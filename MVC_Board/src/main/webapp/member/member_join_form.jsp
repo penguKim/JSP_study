@@ -107,74 +107,22 @@
 		// 7. 취미의 "전체선택" 체크박스 체크 시 취미 항목 모두 체크, 
 		//    "전체선택" 해제 시 취미 항목 모두 체크 해제하기
 		document.querySelector("#checkAllHobby").onclick = function() {
-// 			document.joinForm.hobby[0].checked = document.querySelector("#checkAllHobby").checked;
-// 			document.joinForm.hobby[1].checked = document.querySelector("#checkAllHobby").checked;
-// 			document.joinForm.hobby[2].checked = document.querySelector("#checkAllHobby").checked;
-		
 			for(let i = 0; i < document.joinForm.hobby.length; i++) {
 				document.joinForm.hobby[i].checked = document.querySelector("#checkAllHobby").checked;
 			}
 		};
 		
 		// 8. 가입(submit) 클릭 시 이벤트 처리를 통해
-	    // 이름, 아이디, 비밀번호, 비밀번호확인, 주민번호, Email, 직업, 성별, 취미, 가입동기 항목을
-	    // 모두 입력했는지 체크하고 모든 항목이 입력되었을 경우에만 submit 동작이 수행되도록 처리
+	    // 비밀번호 2개가 일치하는지 체크하고 모든 항목이 입력되었을 경우에만 submit 동작이 수행되도록 처리
 		document.joinForm.onsubmit = function() {
-			if(document.joinForm.name.value == "") {
-				alert("이름 입력 필수!");
-				document.joinForm.name.focus();
-				return false; // submit 동작 취소
-			} else if(document.joinForm.id.value == "") {
-				alert("아이디 입력 필수!");
-				document.joinForm.id.focus();
-				return false; // submit 동작 취소
-			} else if(document.joinForm.passwd.value == "") {
-				alert("패스워드 입력 필수!");
-				document.joinForm.passwd.focus();
-				return false; // submit 동작 취소
-			} else if(document.joinForm.passwd2.value == "") {
-				alert("패스워드 확인 입력 필수!");
-				document.joinForm.passwd2.focus();
-				return false; // submit 동작 취소
-// 			} else if(document.joinForm.passwd2.value != document.joinForm.passwd.value) {
-// 				alert("패스워드 불일치!");
-// 				document.joinForm.passwd2.focus();
-// 				return false; // submit 동작 취소
-			} else if(!isSamePasswd) { // 일치 여부 저장 변수 isSamePasswd 값 활용
+			if(!isSamePasswd) { // 일치 여부 저장 변수 isSamePasswd 값 활용
 				alert("패스워드 불일치!");
 				document.joinForm.passwd2.focus();
 				return false; // submit 동작 취소
-			} else if(document.joinForm.jumin1.value == "") {
-				alert("주민번호 입력 필수!");
-				document.joinForm.jumin1.focus();
-				return false; // submit 동작 취소
-			} else if(document.joinForm.jumin2.value == "") {
-				alert("주민번호 입력 필수!");
-				document.joinForm.jumin2.focus();
-				return false; // submit 동작 취소
-			} else if(document.joinForm.email1.value == "") {
-				alert("이메일 주소 입력 필수!");
-				document.joinForm.email1.focus();
-				return false; // submit 동작 취소
-			} else if(document.joinForm.email2.value == "") {
-				alert("이메일 주소 입력 필수!");
-				document.joinForm.email2.focus();
-				return false; // submit 동작 취소
-			} else if(document.joinForm.job.value == "") {
-				alert("직업 선택 필수!");
-				document.joinForm.job.focus();
-				return false; // submit 동작 취소
-			} else if(document.joinForm.gender.value == "") {
-				alert("성별 선택 필수!");
-				return false; // submit 동작 취소
-			} else if(!document.joinForm.hobby[0].checked && !document.joinForm.hobby[1].checked && !document.joinForm.hobby[2].checked) {
-				// 취미는 모든 체크박스 체크상태가 false 일 때 체크 요청 메세지 출력
-				alert("취미 선택 필수!");
-				return false; // submit 동작 취소
-			} else if(document.joinForm.motivation.value == "") {
-				alert("가입동기 입력 필수!");
-				document.joinForm.motivation.focus();
-				return false; // submit 동작 취소
+// 			} else if(!document.joinForm.hobby[0].checked && !document.joinForm.hobby[1].checked && !document.joinForm.hobby[2].checked) {
+// 				// 취미는 모든 체크박스 체크상태가 false 일 때 체크 요청 메세지 출력
+// 				alert("취미 선택 필수!");
+// 				return false; // submit 동작 취소
 			}
 			
 			return true; // submit 동작 수행(생략 가능)
@@ -216,8 +164,10 @@
 </head>
 <body>
 	<header>
-		
-		<jsp:include page="../inc/top.jsp"></jsp:include>
+		<!-- inc/top.jsp 페이지 삽입 -->
+		<!-- JSP 파일 삽입 대상은 현재 파일을 기준으로 상대주소 지정 -->
+		<!-- webapp 디렉토리를 가리키려면 최상위(루트) 경로 활용 -->
+		<jsp:include page="/inc/top.jsp"></jsp:include>
 	</header>
 	<article>
 		<h1>회원 가입</h1>
@@ -225,12 +175,12 @@
 			<table border="1">
 				<tr>
 					<th>이름</th>
-					<td><input type="text" name="name"></td>
+					<td><input type="text" name="name" required></td>
 				</tr>
 				<tr>
 					<th>아이디</th>
 					<td>
-						<input type="text" name="id" placeholder="8 ~ 16글자">
+						<input type="text" name="id" placeholder="8 ~ 16글자" required>
 						<input type="button" value="ID중복확인" id="btnCheckId" onclick="checkId()">
 						<span id="checkIdResult"></span>
 					</td>
@@ -238,14 +188,14 @@
 				<tr>
 					<th>비밀번호</th>
 					<td>
-						<input type="password" name="passwd" placeholder="8 ~ 16글자">
+						<input type="password" name="passwd" placeholder="8 ~ 16글자" required>
 						<span id="checkPasswdResult"></span>
 					</td>
 				</tr>
 				<tr>
 					<th>비밀번호확인</th>
 					<td>
-						<input type="password" name="passwd2">
+						<input type="password" name="passwd2" required>
 						<span id="checkPasswd2Result"></span>
 					</td>
 				</tr>
@@ -253,26 +203,26 @@
 					<th>주민번호</th>
 					<td>
 						<!-- 입력 문자 갯수 제한 시 maxLength 속성 지정 -->
-						<input type="text" name="jumin1" size="8" maxlength="6"> -
-						<input type="text" name="jumin2" size="8" maxlength="7">
+						<input type="text" name="jumin1" size="8" maxlength="6" required> -
+						<input type="text" name="jumin2" size="8" maxlength="7" required>
 					</td>
 				</tr>
 				<tr>
 					<th>주소</th>
 					<td>
-						<input type="text" name="postCode" id="postCode" size="6">
+						<input type="text" name="postCode" id="postCode" size="6" required>
 						<input type="button" id="btnSearchAddress" value="주소검색">
 						<br>
-						<input type="text" name="address1" id="address1" size="25" placeholder="기본주소">
+						<input type="text" name="address1" id="address1" size="25" placeholder="기본주소" required>
 						<br>
-						<input type="text" name="address2" id="address2" size="25" placeholder="상세주소">
+						<input type="text" name="address2" id="address2" size="25" placeholder="상세주소" required>
 					</td>
 				</tr>
 				<tr>
 					<th>E-Mail</th>
 					<td>
-						<input type="text" name="email1" size="8"> @
-						<input type="text" name="email2" size="8">
+						<input type="text" name="email1" size="8" required> @
+						<input type="text" name="email2" size="8" required>
 						<select name="emailDomain">
 							<option value="">직접입력</option>
 							<option value="naver.com">naver.com</option>
@@ -284,7 +234,7 @@
 				<tr>
 					<th>직업</th>
 					<td>
-						<select name="job">
+						<select name="job" required>
 							<option value="">항목을 선택하세요</option>
 							<option value="개발자">개발자</option>
 							<option value="DB엔지니어">DB엔지니어</option>
@@ -295,8 +245,8 @@
 				<tr>
 					<th>성별</th>
 					<td>
-						<input type="radio" name="gender" value="남">남
-						<input type="radio" name="gender" value="여">여
+						<input type="radio" name="gender" value="남" required>남
+						<input type="radio" name="gender" value="여" required>여
 					</td>
 				</tr>
 				<tr>
@@ -311,7 +261,7 @@
 				<tr>
 					<th>가입동기</th>
 					<td>
-						<textarea rows="5" cols="40" name="motivation"></textarea>
+						<textarea rows="5" cols="40" name="motivation" required></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -325,7 +275,18 @@
 		</form>
 	</article>
 	<footer>
-		<jsp:include page="../inc/bottom.jsp"></jsp:include>
+	
 	</footer>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

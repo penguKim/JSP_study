@@ -54,14 +54,19 @@ public class JdbcUtil {
 			// => 기본적으로 JDBC 사용 시 Auto Commit 기능이 동작되도록 설정되어 있음(기본값)
 			// => Connection 객체(con)의 setAutoCommit() 메서드를 호출하여 설정 변경 가능
 			//    (true : Auto Commit 설정(기본값), false : Auto Commit 해제)
-//			con.setAutoCommit(false); // 자동 커밋 기능 해제
+			con.setAutoCommit(false); // 자동 커밋 기능 해제
+			// => 이제부터 DB 에서 조작을 수행하는 DML 등이 즉시 반영되지 않음
+			//    반드시 커밋 작업을 수행해야 이전 작업들이 모두 반영되고
+			//    롤백 작업을 통해 이전 상태로 되돌리는 작업도 가능해진다.
+			//    (commit, rollback 작업을 수행할 메서드 정의 필요)
 			
 			// 6. 현재 커넥션 정보 확인(옵션)
 			// => DataSource 객체를 BasicDataSource 타입으로 다운캐스팅하여 메서드 호출
-			BasicDataSource bds = (BasicDataSource)ds;
-			System.out.println("MaxTotal : " + bds.getMaxTotal()); // 최대 커넥션 수
-			System.out.println("Active : " + bds.getNumActive()); // 현재 사용중인 커넥션 수
-			System.out.println("Idle : " + bds.getNumIdle()); // 유휴 상태 커넥션 수
+//			BasicDataSource bds = (BasicDataSource)ds;
+//			System.out.println("MaxTotal : " + bds.getMaxTotal()); // 최대 커넥션 수
+//			System.out.println("Active : " + bds.getNumActive()); // 현재 사용중인 커넥션 수
+//			System.out.println("Idle : " + bds.getNumIdle()); // 유휴 상태 커넥션 수
+//			bds.close();
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -73,8 +78,29 @@ public class JdbcUtil {
 		return con;
 		
 	}
+	
+	// 데이터베이스 작업에 대한 Commit, Rollback 기능을 수행할 메서드 정의
+	// => 파라미터 : Connection 객체(con)   리턴타입 : void
+	public static void commit(Connection con) {
+		try {
+			// Connection 객체의 commit() 메서드 호출하여 Commit 작업 수행
+			con.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void rollback(Connection con) {
+		try {
+			// Connection 객체의 rollback() 메서드 호출하여 Rollback 작업 수행
+			con.rollback();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// --------------------------------------------------------------------------
-	// 2. 데이터베이스 자원 반환(close())을 공통으로 수행할 close() 메서드 정의
+	// 데이터베이스 자원 반환(close())을 공통으로 수행할 close() 메서드 정의
 	// => 파라미터 : Connection 타입(con), PreparedStatement(pstmt), ResultSet 타입(rs)
 	// => 리턴타입 : void
 	// => 각각의 파라미터를 따로 전달받아 각각 close() 작업을 수행하도록 메서드 정의

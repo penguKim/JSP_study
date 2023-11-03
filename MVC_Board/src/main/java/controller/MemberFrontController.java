@@ -61,22 +61,22 @@ public class MemberFrontController extends HttpServlet {
 			
 		} else if(command.equals("/MemberJoinPro.me")) {
 			// 회원 가입 처리를 위한 비즈니스 로직 수행 필요
-			System.out.println("회원");
-			
+			// Action 클래스(MemberJoinProAction)의 인스턴스 생성 후 execute() 메서드 호출
+			// => 파라미터 : HttpServletRequest 객체, HttpServletResponse 객체
+			// => 리턴타입 : ActionForward(forward)
 			action = new MemberJoinProAction(); // Action 타입으로 업캐스팅
 			forward = action.execute(request, response);
 			
 		} else if(command.equals("/MemberLoginForm.me")) {
 			System.out.println("회원 로그인 폼!");
+			// 로그인 폼(member/member_login_form.jsp) 페이지 포워딩 => Dispatch
 			forward = new ActionForward();
 			forward.setPath("member/member_login_form.jsp");
-			forward.setRedirect(false);
+			forward.setRedirect(false); // 생략 가능(boolean 타입 기본값이 false)
 		} else if(command.equals("/MemberLoginPro.me")) {
 			// 회원 로그인 처리를 위한 비즈니스 로직 수행 필요
-			// MemberLoginProAction 클래스 활용
-			action = new MemberLoginProAction(); // Action 타입으로 업캐스팅
+			action = new MemberLoginProAction();
 			forward = action.execute(request, response);
-			
 		}
 		
 		// -----------------------------------------------------------------
