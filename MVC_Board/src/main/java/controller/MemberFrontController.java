@@ -10,8 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MemberInfoAction;
 import action.MemberJoinProAction;
 import action.MemberLoginProAction;
+import action.MemberLogoutAction;
+import action.MemberModifyFormAction;
+import action.MemberModifyProAction;
+import action.MemberWithdrawProAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -76,6 +81,39 @@ public class MemberFrontController extends HttpServlet {
 		} else if(command.equals("/MemberLoginPro.me")) {
 			// 회원 로그인 처리를 위한 비즈니스 로직 수행 필요
 			action = new MemberLoginProAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/MemberLogout.me")) {
+			// 회원 로그아웃 처리를 위한 비즈니스 로직 수행 필요
+			System.out.println("로그아웃");
+			action = new MemberLogoutAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/MemberInfo.me")) {
+			// 회원 상세정보 조회를 위한 비즈니스 로직 수행 필요
+			System.out.println("회원 조회");
+			action = new MemberInfoAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/MemberWithdrawForm.me")) {
+			System.out.println("회원 탈퇴 폼!");
+			// 회원탈퇴 폼(member/member_withdraw_form.jsp) 페이지 포워딩 => Dispatch
+			forward = new ActionForward();
+			forward.setPath("member/member_withdraw_form.jsp");
+			forward.setRedirect(false); // 생략 가능(boolean 타입 기본값이 false)
+		} else if(command.equals("/MemberWithdrawPro.me")) {
+			// 회원 탈퇴 처리를 위한 비즈니스 로직 수행 필요
+			System.out.println("회원 탈퇴");
+			action = new MemberWithdrawProAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/MemberModifyForm.me")) {
+			System.out.println("회원 정보수정 폼!");
+			// 회원 정보 수정 폼 출력을 위한 비즈니스 로직 수행 필요
+			// ~~~~~~~~~~~~~~~~~~~~
+			action = new MemberModifyFormAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/MemberModifyPro.me")) {
+			System.out.println("회원 정보수정");
+			// 회원 정보 수정 폼 출력을 위한 비즈니스 로직 수행 필요
+			// ~~~~~~~~~~~~~~~~~~~~
+			action = new MemberModifyProAction();
 			forward = action.execute(request, response);
 		}
 		

@@ -8,10 +8,15 @@
 /* ---- bottom.jsp ---- */
 #footer_area {
 	text-align: center;
-	margin-top: 50px;
+	margin-top: 20px;
 }
 
-/* ---- 공통 ---- */
+/* --------------------------- 공통 -------------------------- */
+/* 모든 하이퍼링크 밑줄 제거 */
+a {
+	text-decoration: none;
+}
+
 article h1, h3 {
 	text-align: center;
 	text-decoration: none;
@@ -22,5 +27,5 @@ article table {
 }
 
 .td_center {
-	text-align: center;
+	text-align: center;	
 }

@@ -59,8 +59,10 @@ public class MemberJoinProService {
 			JdbcUtil.rollback(con);
 		}
 		
+		// 7. 작업 완료 후 Connection 객체 반환(공통)
+		JdbcUtil.close(con);
 		
-		// 작업 요청 처리 결과 리턴
+		// 8. 작업 요청 처리 결과 리턴
 		return isJoinSuccess; // MemberJoinProAction 로 리턴
 	}
 }
