@@ -7,7 +7,7 @@
 	function confirmLogout() {
 		let isLogout = confirm("로그아웃 하시겠습니까?"); // true, false 리턴
 		
-		// ~~~~~~~~~~~~~~~~~~~
+		// isLogout 변수값이 true 일 경우 로그아웃("MemberLogout.me") 서블릿 요청
 		if(isLogout) {
 			location.href = "MemberLogout.me";
 		}
