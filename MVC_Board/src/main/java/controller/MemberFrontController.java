@@ -105,14 +105,14 @@ public class MemberFrontController extends HttpServlet {
 			forward = action.execute(request, response);
 		} else if(command.equals("/MemberModifyForm.me")) {
 			System.out.println("회원 정보수정 폼!");
-			// 회원 정보 수정 폼 출력을 위한 비즈니스 로직 수행 필요
-			// ~~~~~~~~~~~~~~~~~~~~
+			// 회원 정보 수정 폼 
+			// => 단, 회원 정보 조회 후 뷰페이지로 이동하므로
+			//    회원 정보 조회를 위한 비즈니스 로직 수행 필요
 			action = new MemberModifyFormAction();
 			forward = action.execute(request, response);
 		} else if(command.equals("/MemberModifyPro.me")) {
 			System.out.println("회원 정보수정");
-			// 회원 정보 수정 폼 출력을 위한 비즈니스 로직 수행 필요
-			// ~~~~~~~~~~~~~~~~~~~~
+			// 회원 정보 수정 비즈니스 로직 처리 
 			action = new MemberModifyProAction();
 			forward = action.execute(request, response);
 		}

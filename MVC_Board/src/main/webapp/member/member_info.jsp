@@ -21,7 +21,9 @@
 		<table border="1">
 			<tr>
 				<th>이름</th>
-				<%-- ~~~~~~~~~~~~~ --%>
+				<%-- request 객체에 저장된 "member" 속성에 접근하여 정보 출력 --%>
+				<%-- request 객체명 생략, MemberBean 객체의 멤버변수명으로 접근 --%>
+				<%-- => 실제로는 MemberBean 객체의 Getter 메서드가 호출됨 --%>
 				<td>${member.name }</td>
 			</tr>
 			<tr>

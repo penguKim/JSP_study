@@ -268,12 +268,12 @@ public class MemberDAO {
 			pstmt.setString(6, member.getHobby());
 			pstmt.setString(7, member.getMotivation());
 			
-			// ~~~~~~~~~~~~~
+			// 패스워드 유무에 따라 만능문자 인덱스도 달라지므로 조건 변경 필요
 			if(member.getPasswd().equals("")) { // 패스워드가 없을 경우(변경하지 않을 경우)
 				// 기존 문장 그대로 8번 인덱스에 아이디 치환
 				pstmt.setString(8, member.getId());
 			} else { // 패스워드가 있을 경우(변경할 경우)
-				// 기존 문장ㅇ~~~~~~~~~~~~~~~~
+				// 기존 문장에서 8번 인덱스에 패스워드가 추가되고 아이디는 9번 인덱스로 변경
 				pstmt.setString(8, member.getPasswd());
 				pstmt.setString(9, member.getId());
 				
