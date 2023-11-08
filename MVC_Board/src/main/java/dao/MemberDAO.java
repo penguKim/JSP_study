@@ -238,23 +238,25 @@ public class MemberDAO {
 			
 			// ------------------------------------------------------------------------
 			// 공통 문장은 그대로 두고, 문자열 결합 형태로 패스워드만 추가하는 방법
-			sql = "UPDATE member "
-					+ "SET name = ?, address = ?, email = ?, job = ?, gender = ?, hobby = ?, motivation = ? ";
-			
-			// 패스워드 있을 경우(변경할 경우) 패스워드 변경 SET 절을 문자열 결합 추가
-			if(!member.getPasswd().equals("")) { 
-				sql += ", passwd = ?";
-			} 
-			
-			sql += "WHERE id = ?";
+//			sql = "UPDATE member "
+//					+ "SET name = ?, address = ?, email = ?, job = ?, gender = ?, hobby = ?, motivation = ? ";
+//			
+//			// 패스워드 있을 경우(변경할 경우) 패스워드 변경 SET 절을 문자열 결합 추가
+//			if(!member.getPasswd().equals("")) { 
+//				sql += ", passwd = ?";
+//			} 
+//			
+//			sql += "WHERE id = ?";
 			// ------------------------------------------------------------------------
 			// 공통 문장은 그대로 두고 추가할 SET 절을 WHERE 앞에 추가(치환)(수정필요)
-//			sql = "UPDATE member "
-//					+ "SET name = ?, address = ?, email = ?, job = ?, gender = ?, hobby = ?, motivation = ? "
-//					+ "WHERE id = ?";
-//			if(!member.getPasswd().equals("")) { 
-//				sql.replace("WHERE", ", passwd = ? WHERE");
-//			} 
+			sql = "UPDATE member "
+					+ "SET name = ?, address = ?, email = ?, job = ?, gender = ?, hobby = ?, motivation = ? "
+					+ "WHERE id = ?";
+			if(!member.getPasswd().equals("")) { 
+				// replace() 메서드를 통해 WHERE 절 앞에 패스워드 항목 추가
+				// => 치환된 문자열을 다시 sql 변수에 저장
+				sql = sql.replace("WHERE", ", passwd = ? WHERE");
+			} 
 			
 //			String sql = "UPDATE member "
 //					+ "SET name = ?, address = ?, email = ?, job = ?, gender = ?, hobby = ?, motivation = ? "

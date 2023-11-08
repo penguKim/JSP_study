@@ -152,7 +152,7 @@
 					<%-- 아이디 편집 불가(readonly 필수! disabled 는 파라미터 전송에서 제외됨) --%>
 <%-- 						<input type="text" name="id" value="${member.id }" readonly>(변경불가) --%>
 						<%-- 만약, 아이디 파라미터 전송도 불필요할 경우 데이터만 표시 --%>
-						${member.id }(변경불가))
+						${member.id }(변경불가)
 					</td>
 				</tr>
 				<tr>
@@ -240,7 +240,7 @@
 					<td>
 						<%-- 취미 항목 분리없이 해당 항목이 포함되어 있는지 여부로 확인 가능 --%>
 						<%-- ${fn:contains()} 메서드 활용 가능 --%>
-						<c:set var="arrHobbies" value="${fn:split(member.hobby, '/') }"/>
+<%-- 						<c:set var="arrHobbies" value="${fn:split(member.hobby, '/') }"/> --%>
 						<input type="checkbox" name="hobby" value="여행" <c:if test="${fn:contains(member.hobby, '여행') }">checked</c:if>>여행
 						<input type="checkbox" name="hobby" value="독서" <c:if test="${fn:contains(member.hobby, '독서') }">checked</c:if>>독서
 						<input type="checkbox" name="hobby" value="게임" <c:if test="${fn:contains(member.hobby, '게임') }">checked</c:if>>게임
