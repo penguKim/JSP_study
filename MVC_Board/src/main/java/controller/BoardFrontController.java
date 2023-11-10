@@ -14,7 +14,7 @@ import action.BoardListAction;
 import action.BoardWriteProAction;
 import vo.ActionForward;
 
-@WebServlet("*.bo")
+@WebServlet("*.prbo")
 public class BoardFrontController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,13 +38,13 @@ public class BoardFrontController extends HttpServlet {
 		System.out.println("command : " + command);
 		
 		// URL 매핑
-		if(command.equals("/BoardWriteForm.bo")) {
+		if(command.equals("/BoardWriteForm.prbo")) {
 			System.out.println("글쓰기 폼");
 			// 뷰페이지로 바로 이동
 			forward = new ActionForward();
 			forward.setPath("board/board_write_form.jsp");
 			forward.setRedirect(false);
-		} else if(command.equals("/BoardWritePro.bo")) {
+		} else if(command.equals("/BoardWritePro.prbo")) {
 			System.out.println("글쓰기");
 			// 비즈니스 로직 처리
 			action = new BoardWriteProAction();

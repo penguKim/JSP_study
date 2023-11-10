@@ -18,8 +18,7 @@ public class MemberModifyProService {
 
 		// MemberDAO - updateMember() 메서드 호출하여 회원 정보 수정 요청
 		// => 파라미터 : MemberBean 객체   리턴타입 : int(updateCount)
-		int updateCount = dao.UpdateMember(member);
-		
+		int updateCount = dao.updateMember(member);
 		if(updateCount > 0) {
 			JdbcUtil.commit(con);
 			isModifySuccess = true;
