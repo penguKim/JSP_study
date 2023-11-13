@@ -82,18 +82,25 @@ public class BoardDAO {
 		}
 		return insertCount;
 	}
-	public List<BoardBean> selectBoardList() {
+	public List<BoardBean> selectBoardList(int startRow, int listLimit) {
 		System.out.println("BoardDAO - selectBoardList()");
 		List<BoardBean> boardList = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		// board 테이블의 모든 레코드 조회
 		try {
-			String sql = "SELECT * FROM board";
+			// board 테이블의 모든 레코드 조회
+			// => 정렬 기준(ORDER BY 절 사용) : 참조글번호(board_re_ref) 기준 내림차순,
+			//                                  순서번호(board_re_seq) 기준 오름차순
+			// => 조회 레코드 갯수 제한(LIMIT 절 사용)
+			//    1) 정수 파라미터 1개(limit) : 지정한 갯수만큼 조회
+			//    2) 정수 파라미터 2개(startRow, limit) : 시작행 번호부터 지정한 갯수만큼 조회
+			String sql = "SELECT * FROM board "
+					+ "ORDER BY board_re_ref DESC, board_re_seq ASC LIMIT ?, ?";
 			pstmt = con.prepareStatement(sql);
-			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, listLimit);
 			rs = pstmt.executeQuery();
 			
 			// 전체 레코드를 저장할 List<BoardBean> 타입 객체 생성
@@ -129,6 +136,106 @@ public class BoardDAO {
 		
 		
 		return boardList;
+	}
+	// 전체 게시물 수 조회
+	public int boardListCount() {
+		System.out.println("BoardDAO - boardListCount()");
+
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			// board 테이블의 전체 레코드 수 조회
+			// => COUNT() 함수 활용
+			String sql = "SELECT COUNT(*) FROM board";
+			pstmt= con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				// 조회 결과가 있을 경우 첫번째 컬럼 데이터 저장
+				listCount = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생 - boardListCount()");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	// 게시물 상세정보 조회
+	public BoardBean selectBoard(int board_num) {
+		System.out.println("BoardDAO - selectBoard()");
+		
+		BoardBean board = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			// 글번호(board_num)가 일치하는 레코드 검색 - SELECT
+			String sql = "SELECT * FROM board WHERE board_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) { // 조회 결과가 있을 경우
+				// 1개 게시물 정보를 저장할 BoardBean 객체 생성 및 데이터 저장
+				board = new BoardBean();
+				// BoardBean 객체에 조회 결과(1개 레코드) 저장
+				board.setBoard_num(rs.getInt("board_num")); // 글번호
+				board.setBoard_name(rs.getString("board_name")); // 작성자
+				board.setBoard_subject(rs.getString("board_subject")); // 작성자
+				board.setBoard_content(rs.getString("board_content")); // 작성자
+				board.setBoard_re_ref(rs.getInt("board_re_ref")); // 참조글번호
+				board.setBoard_re_lev(rs.getInt("board_re_lev")); // 들여쓰기레벨
+				board.setBoard_re_seq(rs.getInt("board_re_seq")); // 순서번호
+				board.setBoard_readcount(rs.getInt("board_readcount")); // 조회수
+				board.setBoard_date(rs.getTimestamp("board_date")); // 작성일
+				board.setWriter_ip(rs.getString("writer_ip")); // 작성자 IP주소
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생 - selectBoard()");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+		return board;
+	}
+	
+	// 조회수 증가
+	public int updateReadcount(int board_num) {
+		System.out.println("BoardDAO - updateReadCount()");
+		int updateCount = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			// 글 번호가 일치하는 레코드의 조회수(board_readcount)값 1 만큼 증가 - UPDATE
+			String sql = "UPDATE board SET board_readcount = board_readcount + 1 "
+					+ "WHERE board_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			updateCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생 - updateReadcount()");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		
+		
+		
+		return updateCount;
 	}
 	
 	
