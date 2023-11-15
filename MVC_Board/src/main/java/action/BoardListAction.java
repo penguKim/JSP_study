@@ -38,6 +38,7 @@ public class BoardListAction implements Action {
 		
 		// -----------------------------------------------------
 		// BoardListService - getBoardList() 메서드 호출하여 글목록 조회 요청
+		// => 조회시작 행부터 지정한 목록의 갯수만큼 조회한다.
 		// => 파라미터 : 시작행번호, 목록갯수   리턴타입 : java.util.List<BoardBean>(boardList)
 		BoardListService service = new BoardListService();
 		List<BoardBean> boardList = service.getBoardList(startRow, listLimit);
