@@ -31,7 +31,7 @@ public class BoardWriteProAction implements Action {
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('잘못된 접근입니다!);");
-				out.println("location.href='./';");
+				out.println("location.href = './';");
 				out.println("</script>");
 			} catch (IOException e) {
 				e.printStackTrace();

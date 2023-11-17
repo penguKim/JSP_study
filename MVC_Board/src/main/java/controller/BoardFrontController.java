@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.BoardDeleteAction;
 import action.BoardDetailAction;
 import action.BoardListAction;
+import action.BoardModifyFormAction;
+import action.BoardModifyProAction;
 import action.BoardWriteProAction;
 import vo.ActionForward;
 
@@ -59,7 +62,26 @@ public class BoardFrontController extends HttpServlet {
 			// 비즈니스 로직 처리
 			action = new BoardDetailAction();
 			forward = action.execute(request, response);
+		} else if(command.equals("/BoardDelete.bo")) {
+			System.out.println("게시글삭제");
+			// 비즈니스 로직 처리
+			action = new BoardDeleteAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/BoardModifyForm.bo")) {
+			// 비즈니스 로직 처리
+			action = new BoardModifyFormAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/BoardModifyPro.bo")) {
+			System.out.println("게시글수정");
+			// 비즈니스 로직 처리
+			action = new BoardModifyProAction();
+			forward = action.execute(request, response);
 		}
+		
+		
+		
+		
+		
 		
 		if(forward != null) {
 			if(forward.isRedirect()) { // 리다이렉트 방식
