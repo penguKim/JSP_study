@@ -49,7 +49,7 @@
 		<h1>게시판 글 수정</h1>
 		<form action="BoardModifyPro.bo" name="modifyForm" method="post">
 		<%-- 직접 입력받지 않은 글번호, 페이지번호를 폼 파라미터로 함께 전달하기 위해 --%>
-		<%-- input type="hidden" 속석을 활용하여 폼 데이터로 추가 가능 --%>
+		<%-- input type="hidden" 속성을 활용하여 폼 데이터로 추가 가능 --%>
 		<%-- name 속성에 파라미터 이름, value 속성에 파라미터 값 지정 --%>
 		<input type="hidden" name="board_num" value="${board.board_num }">
 		<input type="hidden" name="pageNum" value="${param.pageNum }">

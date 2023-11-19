@@ -16,7 +16,7 @@ public class BoardDeleteService {
 //		BoardDAO dao = BoardDAO.getInstance();
 //		dao.setConnection(con);
 //		
-//		// MemberDAO - isBoardWriter() 메서드 호출하여 글목록 조회 작업 요청
+//		// BoardDAO - isBoardWriter() 메서드 호출하여 글목록 조회 작업 요청
 //		// => 파라미터 : 글번호, 아이디   리턴타입 : boolean(isBoardWriter)
 //		isBoardWriter = dao.isBoardWriter(board_num, id);
 //		
@@ -35,7 +35,7 @@ public class BoardDeleteService {
 		BoardDAO dao = BoardDAO.getInstance();
 		dao.setConnection(con);
 		
-		// MemberDAO - isBoardWriter() 메서드 호출하여 글목록 조회 작업 요청
+		// BoardDAO - isBoardWriter() 메서드 호출하여 글목록 조회 작업 요청
 		// => 파라미터 : BoardBean 객체   리턴타입 : boolean(isBoardWriter)
 		isBoardWriter = dao.isBoardWriter(board);
 		
@@ -53,7 +53,7 @@ public class BoardDeleteService {
 		BoardDAO dao = BoardDAO.getInstance();
 		dao.setConnection(con);
 		
-		// MemberDAO - deleteBoard() 메서드 호출하여 글 삭제 작업 요청
+		// BoardDAO - deleteBoard() 메서드 호출하여 글 삭제 작업 요청
 		// => 파라미터 : 글번호   리턴타입 : int(deleteCount)
 		int deleteCount = dao.deleteBoard(board_num);
 		
