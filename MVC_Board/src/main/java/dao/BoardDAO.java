@@ -82,6 +82,7 @@ public class BoardDAO {
 		}
 		return insertCount;
 	}
+	// 글목록 조회
 	public List<BoardBean> selectBoardList(int startRow, int listLimit) {
 		System.out.println("BoardDAO - selectBoardList()");
 		List<BoardBean> boardList = null;
@@ -192,8 +193,8 @@ public class BoardDAO {
 				// BoardBean 객체에 조회 결과(1개 레코드) 저장
 				board.setBoard_num(rs.getInt("board_num")); // 글번호
 				board.setBoard_name(rs.getString("board_name")); // 작성자
-				board.setBoard_subject(rs.getString("board_subject")); // 작성자
-				board.setBoard_content(rs.getString("board_content")); // 작성자
+				board.setBoard_subject(rs.getString("board_subject")); // 제목
+				board.setBoard_content(rs.getString("board_content")); // 내용
 				board.setBoard_re_ref(rs.getInt("board_re_ref")); // 참조글번호
 				board.setBoard_re_lev(rs.getInt("board_re_lev")); // 들여쓰기레벨
 				board.setBoard_re_seq(rs.getInt("board_re_seq")); // 순서번호
@@ -320,6 +321,8 @@ public class BoardDAO {
 		
 		return deleteCount;
 	}
+	
+	// 글 수정
 	public int updateBoard(BoardBean board) {
 		System.out.println("BoardDAO - updateBoard()");
 		int updateCount = 0;
@@ -346,6 +349,82 @@ public class BoardDAO {
 		}
 		
 		return updateCount;
+	}
+	
+	// 답글 쓰기
+	public int insertReplyBoard(BoardBean board) {
+		System.out.println("BoardDAO - insertReplyBoard()");
+		
+		int insertCount = 0;
+		PreparedStatement pstmt = null, pstmt2 = null;
+		ResultSet rs = null;
+		
+		try {
+			// 답글 쓰기에 필요한 답글 관련 정보들을 별도의 변수에 저장
+			int ref = board.getBoard_re_ref();
+			int lev = board.getBoard_re_lev();
+			int seq = board.getBoard_re_seq();
+			
+			// 1. 기존 답글들에 대한 순서번호(board_re_seq) 증가 - UPDATE
+			String sql ="UPDATE board "
+					+ "SET board_re_seq = board_re_seq + 1 "
+					+ "WHERE board_re_ref = ? "
+					+ "AND board_re_seq > ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, ref);
+			pstmt.setInt(2, seq);
+			pstmt.executeUpdate();
+
+			// 기존 사용 완료된 pstmt 객체는 더 이상 불필요하므로 close()
+			pstmt.close(); // 예외가 발생해도 catch 블럭에서 처리한다.
+			// -------------------------------------------------------
+			// 2. 답글 쓰기
+			// 2-1) 새 답글에 사용될 lev, seq 값은 원본값 + 1 처리
+			lev++;
+			seq++;
+			
+			// 2-2) 기존 게시물의 가장 큰 번호 조회 - SELECT => 글쓰기와 동일
+			int board_num = 1; // 새 글 번호(기본값 1)
+			sql = "SELECT MAX(board_num) FROM board";
+			// 위에서 pstmt 객체를 닫아서 새로 사용 가능
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) { // 조회 결과가 있을 경우
+				// 기존 게시물이 하나라도 존재할 경우 가장 큰 번호가 리턴되므로 + 1 값을 저장하고
+				// 아니면(게시물이 하나도 없을 경우), 기본값 그대로 사용
+				board_num = rs.getInt(1) + 1; // 첫번째 컬럼 지정후  + 1 
+			}
+			// ------------------------------------------------------------------
+			// 전달받은 데이터(BoardBean 객체) 사용하여 글쓰기 작업 수행 - INSERT
+			// => 새 글 번호는 계산된 번호(board_num 값) 사용
+			// => 참조글번호(board_re_ref)는 새 글 번호와 동일한 번호 사용
+			// => 들여쓰기레벨(board_re_lev)과 순서번호(board_re_seq)는 0 지정
+			// => 조회수(board_readcount) 0 지정
+			// => 작성일자(board_date) 는 현재 서버 시각 활용(now() 함수 사용)
+			sql = "INSERT INTO board VALUE(?, ?, ?, ?, ?, ?, ?, ?, now(), ?)";
+			pstmt2 = con.prepareStatement(sql);
+			pstmt2.setInt(1, board_num); // 글번호(계산된 새 글 번호 사용)
+			pstmt2.setString(2, board.getBoard_name()); // 작성자(전달받은 값)
+			pstmt2.setString(3, board.getBoard_subject()); // 제목(전달받은 값)
+			pstmt2.setString(4, board.getBoard_content()); // 내용(전달받은 값)
+			pstmt2.setInt(5, ref); // 참조글 번호(전달받은 값)
+			pstmt2.setInt(6, lev); // 들여쓰기레벨(계산된 값)
+			pstmt2.setInt(7, seq); // 순서번호(계산된 값)
+			pstmt2.setInt(8, 0); // 조회수(기본값0)
+			pstmt2.setString(9, board.getWriter_ip()); // 작성자 IP 주소(전달받은 값)
+//			System.out.println(pstmt2);
+			insertCount = pstmt2.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생 - insertReplyBoard()");
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(pstmt2);
+		}
+		
+		return insertCount;
 	}
 	
 	

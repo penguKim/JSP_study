@@ -40,12 +40,14 @@ public class BoardModifyFormAction implements Action {
 		// 글번호 파라미터 가져오기
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		
-		// BoardDetailService - getBoard() 메서드 호출하여 글 상세정보 조회 요청(재사용)
+		// BoardDetailService - getBoard() 메서드 호출하여 글 상세정보 조회 요청
 		// => 파라미터 : 글번호   리턴타입 : BoardBean(board)
 		// => 주의! BoardModifyFormService 클래스를 새로 정의하는 것이 아니라
 		//    기존의 글 상세정보 조회 기능을 재사용하기 위해 BoardDetailService 클래스 재사용
+		// => 추가사항) 글 수정, 답글 작성과 구분하여 조회수 증가도 함께 수행하기 위해
+		//    boolean 타입 값을 신호로 전달(true : 조회수 증가, false : 조회수 미증가)
 		BoardDetailService service = new BoardDetailService();
-		BoardBean board = service.getBoard(board_num);
+		BoardBean board = service.getBoard(board_num, false); // 조회수 증가 작업 안함
 		System.out.println(board);
 		
 		// 세션 아이디와 조회 결과 중 작성자가 동일한지 판별

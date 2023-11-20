@@ -53,6 +53,7 @@
 				<tr>
 					<td class="write_td_left"><label for="board_name">글쓴이</label></td>
 					<td class="write_td_right">
+						<%-- 작성자는 세션 아이디값 그대로 사용(읽기 전용) --%>
 						<input type="text" name="board_name" value="${sessionScope.sId }" readonly="readonly" />
 					</td>
 				</tr>

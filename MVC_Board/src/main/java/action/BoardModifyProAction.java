@@ -90,7 +90,7 @@ public class BoardModifyProAction implements Action {
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('글 수정 실패!');");
-				out.println("location.href = './'");
+				out.println("history.back();");
 				out.println("</script>");
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -98,7 +98,7 @@ public class BoardModifyProAction implements Action {
 			return null;
 		} 
 		
-		// 페이지번호는 작업 완료 후 페이지 이동 시 전달만 해도 되므로 변수 저장 생략 가능
+		// 페이지번호 없을 경우 기본값 처리
 		String pageNum = request.getParameter("pageNum");
 		// 만약, 페이지번호가 null 또는 널스트링 일 경우 기본값 "1" 설정
 		if(pageNum == null || pageNum.equals("")) {

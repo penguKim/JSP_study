@@ -15,6 +15,8 @@ import action.BoardDetailAction;
 import action.BoardListAction;
 import action.BoardModifyFormAction;
 import action.BoardModifyProAction;
+import action.BoardReplyFormAction;
+import action.BoardReplyProAction;
 import action.BoardWriteProAction;
 import vo.ActionForward;
 
@@ -75,6 +77,15 @@ public class BoardFrontController extends HttpServlet {
 			System.out.println("게시글수정");
 			// 비즈니스 로직 처리
 			action = new BoardModifyProAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/BoardReplyForm.bo")) {
+			// 비즈니스 로직 처리
+			action = new BoardReplyFormAction();
+			forward = action.execute(request, response);
+		} else if(command.equals("/BoardReplyPro.bo")) {
+			System.out.println("답글달기");
+			// 비즈니스 로직 처리
+			action = new BoardReplyProAction();
 			forward = action.execute(request, response);
 		}
 		
