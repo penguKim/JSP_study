@@ -19,7 +19,7 @@ public class BoardReplyProService {
 		BoardDAO dao = BoardDAO.getInstance();
 		dao.setConnection(con);
 		
-		// MemberDAO - insertReplyBoard() 메서드 호출하여 글쓰기 작업 요청
+		// BoardDAO - insertReplyBoard() 메서드 호출하여 글쓰기 작업 요청
 		// => 파라미터 : BoardBean 객체   리턴타입 : int(insertCount)
 		int insertCount = dao.insertReplyBoard(board);
 		

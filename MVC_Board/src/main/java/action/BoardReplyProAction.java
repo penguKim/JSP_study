@@ -20,7 +20,6 @@ public class BoardReplyProAction implements Action {
 		
 		ActionForward forward = null;
 		
-		// 세션 아이디 저장(단, 세션 아이디가 없을 경우 자바스크립트 오류 출력 및 이전페이지로 이동)
 		// 세션 아이디 존재하지 않을 경우 처리
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("sId");

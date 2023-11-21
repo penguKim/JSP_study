@@ -399,7 +399,7 @@ public class BoardDAO {
 			// 전달받은 데이터(BoardBean 객체) 사용하여 글쓰기 작업 수행 - INSERT
 			// => 새 글 번호는 계산된 번호(board_num 값) 사용
 			// => 참조글번호(board_re_ref)는 새 글 번호와 동일한 번호 사용
-			// => 들여쓰기레벨(board_re_lev)과 순서번호(board_re_seq)는 0 지정
+			// => 들여쓰기레벨(board_re_lev)과 순서번호(board_re_seq)는 계산된 값 사용
 			// => 조회수(board_readcount) 0 지정
 			// => 작성일자(board_date) 는 현재 서버 시각 활용(now() 함수 사용)
 			sql = "INSERT INTO board VALUE(?, ?, ?, ?, ?, ?, ?, ?, now(), ?)";
