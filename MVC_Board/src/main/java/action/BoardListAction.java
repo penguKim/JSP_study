@@ -30,7 +30,7 @@ public class BoardListAction implements Action {
 		System.out.println("현재 페이지 : " + pageNum);
 		
 		// 한 페이지에서 표시할 글 목록 갯수 지정
-		int listLimit = 3;
+		int listLimit = 5;
 		
 		// 조회 시작 행(레코드) 번호 계산
 		// => 0번부터 시작하여 페이지 당 목록 갯수씩 증가해야함
