@@ -95,13 +95,14 @@
 				<tr>
 					<td>${board.board_num }</td>
 					<td id="subject">
-						<%-- 답글 관련 처리 ~~~~~~~~~~~~~~~~~~~~~~~~~~~ --%>
-						<c:if test="${board.board_re_lev > 0 }">
-							<%-- ~~~~~~~~~~~~~~ --%>
-							<c:forEach begin="1" end="${board.board_re_lev }">
-							<%-- 레벨이 1일 경우 1번 반복 --%>
-							&nbsp;&nbsp;
-							</c:forEach>	
+						<%-- ========== 답글 관련 처리 ========== --%>
+						<%-- board_re_lev 값이 0 보다 크면 답글이므로 들여쓰기 후 이미지(re.gif) 추가 --%>
+						<c:if test="${board.board_re_lev > 0}">
+							<%-- 반복문을 통해 board_re_lev 값만큼 공백(&nbsp;) 2개씩 추가 --%>
+							<%-- ex) lev = 1 일 때 2칸, lev = 2 일 때 4칸 --%>
+							<c:forEach begin="1" end="${board.board_re_lev}">
+								&nbsp;&nbsp;							
+							</c:forEach>
 							<img src="images/re.gif">
 						</c:if>
 						<%-- 제목 클릭 시 하이퍼링크 설정(BoardDetail.bo) --%>
