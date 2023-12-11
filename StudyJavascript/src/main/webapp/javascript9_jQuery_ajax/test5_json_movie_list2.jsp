@@ -17,12 +17,62 @@
 			https://www.kobis.or.kr/kobisopenapi/homepg/apiservice/searchServiceInfo.do?serviceId=searchDailyBoxOffice
 			=> 지정된 요청 파라미터 형식에 맞게 URL 을 수정해야함
 			
-			샘플 API 요청 주소(단, 대상 조회일자(targetDt)는 어제(2023년 12월 5일로 변경))
+			샘플 API 요청 주소
 			http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=f5eef3421c602c6cb7ea224104795888&targetDt=20231205
+			=> 조회일자(targetDt)를 입력받아 원하는 일자의 박스오피스 조회로 변경		
+			-------------------------------
 			*/
+			
+			// ----------- 날짜 입력받아 포맷 변환하기 --------------
+			let selectedDate = $("#date").val(); // yyyy-MM-dd 형태
+			console.log("선택된 날짜 : " + selectedDate);
+			
+			// 만약, 날짜가 선택되지 않았을 경우 오류메세지 출력 후 함수 실행 종료
+			if(selectedDate == "") {
+				alert("날짜를 선택하세요!");
+				$("#date").focus();
+				return;
+			}
+			
+			// 전달받은 날짜 형식 : yyyy-MM-dd
+			// 파라미터로 전달할 날짜 형식 : yyyyMMdd
+			// => 따라서, 조회 대상 일자 형식에 맞는 날짜 형식으로 포맷 변환 필요
+			//    (날짜 사이에 끼어있는 '-' 기호 제거)
+			// 1) split() 메서드 활용하여 "-" 기호를 기준으로 문자열 분리하여 결합
+// 			let targetDt = selectedDate.split("-")[0] + selectedDate.split("-")[1] + selectedDate.split("-")[2];
+			// => 0번 인덱스 연도, 1번 인덱스 월, 2번 인덱스 일이므로 3개 값을 결합
+		
+			// 2) replaceAll() 메서드를 호출하여 모든 대상 문자열을 치환
+// 			let targetDt = selectedDate.replaceAll("-", ""); // 20231210
+			
+			// 3) replace() 메서드를 호출하여 대상 문자열 치환
+			//    단, 기본적으로는 1개의 대상 문자열만 치환됨
+// 			let targetDt = selectedDate.replace("-", ""); // 202312-10
+			// => replace() 메서드의 기본 특징은 처음 만나는 대상 문자열만 치환됨
+			//    따라서, 첫번째 "-" 기호만 "" 으로 치환되어 202312-10 리턴됨
+			// ---------
+			// 정규표현식을 활용하여 문자열 내의 모든 대상 문자열을 탐색하도록 해야한다!
+			// 이 때, 모든 문자열을 대상으로 찾을 문자열을 지정하여 전체 적용하려면
+			// 정규표현식에서 제공하는 플래그 활용 필요!
+			// 참고) 정규표현식 플래그 종류
+			//       1) /g(global) : 대상 문자열 내에서 패턴에 해당되는 모든 대상 지정 
+			//       2) /i(ignore case) : 대상 문자열을 대소문자 무시하고 지정
+			//       3) /m(multi line) : 대상 문자열이 복수개의 라인일 경우 전체 라인 지정
+			let targetDt = selectedDate.replace(/-/g, "");
+			
+			console.log("요청할 조회 대상일자(regex) : " + targetDt);
+			
+			
+			// ------------------------------------------------------
+			
+			let key = "f5eef3421c602c6cb7ea224104795888";
 			$.ajax({
 				type: "GET", // 생략 가능
-				url: "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=f5eef3421c602c6cb7ea224104795888&targetDt=20231205", 
+				url: "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json", 
+				data: {
+					key : key,
+					targetDt : targetDt
+				},
 				dataType: "json", // 응답 데이터를 JSON 객체로 취급 
 				success: function(data) {
 					// 임시) #resultArea 영역에 응답 데이터 출력
@@ -56,15 +106,26 @@
 					//    현재순위(rank), 제목(movieNm), 개봉일(openDt), 누적관객수(audiAcc)
 					//    추출 후 테이블 내에 출력
 					for(let movie of dailyBoxOfficeList) {
-						let rank = movie.rank;
-						let movieNm = movie.movieNm;
-						let openDt = movie.openDt;
-						let audiAcc = movie.audiAcc;
-						$("table").append("<tr><td>" + rank + "</td>"
-										+ "<td>" + movieNm + "</td>"
-										+ "<td>" + openDt + "</td>"
-										+ "<td>" + audiAcc + "</td></tr>"
-										);
+						
+// 						$("table").append("<tr><td>" + movie.rank + "</td>"
+// 										+ "<td>" + movie.movieNm + "</td>"
+// 										+ "<td>" + movie.openDt + "</td>"
+// 										+ "<td>" + movie.audiAcc + "</td>" 
+// 										+ "</tr>"
+// 										);
+						// 추가사항) 상세정보 버튼 클릭 시 영화 상세정보 조회 페이지로 이동
+						//           파라미터로 영화코드(movieCd)값 전달
+						let movieCd = movie.movieCd;
+						let url = "\"test6_json_movie_detail.jsp?key=" + key + "&movieCd=" + movieCd + "\"";
+						$("#resultArea > table").append(
+							"<tr>"	
+							+ "<td>" + movie.rank + "</td>"	
+							+ "<td>" + movie.movieNm + "</td>"	
+							+ "<td>" + movie.openDt + "</td>"	
+							+ "<td>" + movie.audiAcc + "</td>"	
+							+ "<td><button onclick='location.href = " + url + "'>상세정보</button></td>"	
+							+ "</tr>"	
+						);
 					}
 					
 					
@@ -79,7 +140,8 @@
 </script>
 </head>
 <body>
-	<h1>AJAX - test5_json.jsp</h1>
+	<h1>AJAX - test5_json_movie_list2.jsp</h1>
+	<input type="date" id="date">
 	<input type="button" value="일별 박스오피스 조회" id="btnOk">
 	<hr>
 	<div id="resultArea">
@@ -89,6 +151,7 @@
 				<th width="400">영화명</th>
 				<th width="150">개봉일</th>
 				<th width="100">누적관객수</th>
+				<th></th>
 			</tr>
 			<%-- 영화 정보 파싱 결과가 출력될 위치 --%>
 		</table>
