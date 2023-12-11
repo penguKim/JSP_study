@@ -20,11 +20,11 @@
 					// 응답된 JSON 데이터가 배열 형식일 경우
 					// 일반 자바스크립트 배열 접근 방법과 동일(반복문 또는 직접 출력)
 					// 1) 배열 직접 출력
-// 					$("#resultArea > table").append(
-// 						"<tr>"
-// 						+ "<td>" + data + "</td>"
-// 						+ "</tr>"
-// 					);
+					$("#resultArea > table").append(
+						"<tr>"
+						+ "<td>" + data + "</td>"
+						+ "</tr>"
+					);
 				
 					// 2) 일반 for문을 통해 반복으로 배열 인덱스 접근
 					//    (배열명.length 활용)
@@ -38,14 +38,14 @@
 // 					}
 		
 					// 3) 향상된 for문(for...of)을 통해 반복문 사용
-					for(let name of data) {
-						$("#resultArea > table").append(
-							"<tr>"
-							// 전달받은 변수 그대로 데이터 접근
-							+ "<td>" + name + "</td>"
-							+ "</tr>"
-						);
-					}
+// 					for(let name of data) {
+// 						$("#resultArea > table").append(
+// 							"<tr>"
+// 							// 전달받은 변수 그대로 데이터 접근
+// 							+ "<td>" + name + "</td>"
+// 							+ "</tr>"
+// 						);
+// 					}
 					
 				},
 				error : function() {
