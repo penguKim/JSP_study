@@ -36,17 +36,15 @@
 				} else {
 					actors = "";
 				}
-				
-// 				alert(movieInfo.movieNm);
 				$("table").append("<tr>"
 									+ "<td>" + movieInfo.movieNm + "</td>"
 									+ "<td>" + movieInfo.showTm + "</td>"
 									+ "<td>" + movieInfo.prdtYear + "</td>"
 									+ "<td>" + movieInfo.openDt + "</td>"
 									+ "<td>" + movieInfo.nations[0].nationNm + "</td>"
-									+ "<td>" + genres + "</td>"
+									+ "<td>" + genres.substring(0, genres.length - 1) + "</td>"
 									+ "<td>" + movieInfo.directors[0].peopleNm + "</td>"
-									+ "<td>" + actors + "</td>"
+									+ "<td>" + actors.substring(0, actors.length - 1) + "</td>"
 									+ "<td>" + movieInfo.audits[0].watchGradeNm + "</td>"
 									+ "</tr>"					
 				);
